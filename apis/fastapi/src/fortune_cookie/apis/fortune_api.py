@@ -44,5 +44,6 @@ for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
     summary="Gets a random fortune cookie",
     response_model_by_alias=True,
 )
+@router.get("/")
 async def get_fortune_cookie() -> str:
     return random.choice(FORTUNES).replace("\n", "")
