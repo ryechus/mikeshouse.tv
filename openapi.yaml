@@ -1,0 +1,51 @@
+openapi: "3.0.0"
+info:
+  version: 0.1.0
+  title: Fortune Cookie
+  license:
+    name: MIT
+servers:
+  - url: https://fortune-cookies.scavenger.news
+paths:
+  /random:
+    get:
+      summary: Gets a random fortune cookie
+      operationId: getFortuneCookie
+      tags:
+        - fortune
+      responses:
+        '200':
+          description: A single fortune cookie
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FortuneCookie"
+        '500':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    FortuneCookie:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        text:
+          type: string
+        chinese:
+          type: string
+        lucky_numbers:
+          type: string
+        daily_numbers:
+          type: string
+    Error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
