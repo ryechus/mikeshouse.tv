@@ -7,7 +7,5 @@ ENV PATH="/venv/bin:$PATH"
 
 RUN pip install --upgrade pip
 
-COPY . .
+COPY ./apis/fastapi .
 RUN pip install --no-cache-dir .
-
-COPY fortunes.txt ./fortunes.txt
