@@ -1,0 +1,47 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fortune-cookie
+spec:
+  selector:
+    app: fortune-cookie
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fortune-cookie-deployment
+  labels:
+    app: fortune-cookie
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fortune-cookie
+  template:
+    metadata:
+      labels:
+        app: fortune-cookie
+    spec:
+      imagePullSecrets:
+        - name: docker.io.auth
+      containers:
+      - name: fortune-cookie-api
+        command:
+          - uvicorn
+          - fortune_cookie.main:app
+          - --host
+          - 0.0.0.0
+          - --port
+          - "8080"
+        image: ryechus/fortune-cookie:0.1.2
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+          - name: FORTUNE_COOKIE_FILE_PATH
+            value: /usr/src/app/fortunes.txt
