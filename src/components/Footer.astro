@@ -1,11 +1,16 @@
 ---
+interface Props {
+  ticketUrl: string;
+}
+
+const { ticketUrl } = Astro.props;
 
 ---
 
 <div class="links">
 	<a
 		id="get_tickets"
-		href="https://posh.vip/f/18d6d?t=mikeshouse-tv"
+		href={ticketUrl}
 		>rsvp</a
 	>
 </div>
@@ -17,7 +22,7 @@
 	a:visited,
 	a:active,
 	a:hover {
-		color: unset;
+		color: white;
 		font-size: 1.13em;
 	}
 </style>

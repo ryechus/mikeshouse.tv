@@ -2,31 +2,33 @@
 import Layout from "../layouts/Layout.astro";
 import Footer from "../components/Footer.astro";
 import Socials from "../components/Socials.astro";
+
+const textUrl = "https://mikesafterdark.com/assets/nite%20session%20jan%2020%20txt.png";
+const backgroundUrl = "https://mikeshouse.tv/assets/nite%20session%20jan%2020%20bg.gif"
+const ogImageUrl = "https://mikeshouse.tv/assets/nite%20session%20jan%2020%202025.png";
+const ticketUrl = "https://posh.vip/f/1cb6f?t=mikeshouse-tv";
 ---
 
-<Layout title="Mike's House presents...Nite Session + Open Decks - November 25, 2024 @ The Graryson Bar DTLA">
+<Layout title="Mike's House presents...Nite Session - Jan 6, 2025 @ The Graryson Bar DTLA" backgroundUrl={backgroundUrl} ogImageUrl={ogImageUrl}>
 	<main>
 		<img
 			class="poster-text"
-			src="https://mikeshouse.tv/assets/Nite%20session%20text.png"
-			alt="transparent poster with text only for Nite Session event"
+			src={textUrl}
+			alt="transparent poster with text only for Offline event"
 		/>
-		<Footer />
+		<Footer ticketUrl={ticketUrl}/>
 		<Socials />
 		<div class="poster-text">
-			<h1>Mike's House presents Nite Session + Open Decks sponsored by Niteflyers</h1>
+			<h1>Mike's House presents Nite Session sponsored by Niteflyers</h1>
 			<h2>Lineup</h2>
 			<ul>
-				<li>Avey</li>
-				<li>Lex Looper</li>
-				<li>Ketchup</li>
+				<li>DJ RMZ</li>
+				<li>WRMBRW</li>
 				<li>Mikezilla</li>
-				<li>Juan Latino</li>
+				<li>Ketchup</li>
 			</ul>
 			<p>
-				Nite Session is a new party presented by Mike’s House. It’s the same great community that brought you the Block Party Pop Up and Mike’s Day Out. This time we’re opening up the decks.
-        <br>
-        This is your opportunity to get valuable experience DJing for a crowd on professional equipment. Slots will fill up fast so get here early and stay late.
+				Nite Session is a new party presented by Mike’s House. It’s the same great community that brought you the Block Party Pop Up, Mike’s Day Out, and Nite Sessions. Get off your phone. Get in the moment. Get offline.
 			</p>
 		</div>
 	</main>

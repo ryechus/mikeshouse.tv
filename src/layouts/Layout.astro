@@ -1,14 +1,17 @@
 ---
-import "@fontsource/bebas-neue";
+import '@fontsource/space-mono';
+import '@fontsource/bebas-neue';
 
 interface Props {
   title: string;
+  backgroundUrl: string;
+  ogImageUrl: string
 }
 
-const { title } = Astro.props;
+const { title, backgroundUrl, ogImageUrl } = Astro.props;
 
-const description =
-  "Nite Session + Open Decks - November 25, 2024 @ The Graryson Bar DTLA";
+const backgroundUrlStyle = `url(${backgroundUrl})`;
+
 ---
 
 <!doctype html>
@@ -21,10 +24,10 @@ const description =
     <meta property="og:title" content={title} />
     <meta property="og:type" content="article" />
     <meta property="og:description" content={title} />
-    <!-- <meta
+    <meta
       property="og:image"
-      content="https://mikesafterdark.com/assets/Block%20Party%20Pop%20Up%20%28banner%29.jpg"
-    /> -->
+      content={ogImageUrl}
+    />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="480" />
     <meta property="og:url" content="https://mikeshouse.tv" />
@@ -41,7 +44,7 @@ const description =
     </div>
   </body>
 </html>
-<style is:global>
+<style is:global define:vars={{ backgroundUrlStyle }}>
   :root {
     --accent: 136, 58, 234;
     --accent-light: 224, 204, 250;
@@ -54,7 +57,7 @@ const description =
     );
   }
   html {
-    font-family: "Bebas Neue";
+    font-family: 'Bebas Neue';
     text-transform: uppercase;
     font-weight: 900;
   }
@@ -85,9 +88,9 @@ const description =
     border: 3px;
     margin: 0;
     padding: 0;
-    background-image: url("https://mikeshouse.tv/assets/Nite%20session%20bg.gif");
-    /* animation-duration: 30s; */
-    /* animation-name: bg-movement;
+    background-image: var(--backgroundUrlStyle);
+    /* animation-duration: 30s;
+    animation-name: bg-movement;
     animation-iteration-count: infinite;
     animation-timing-function: cubic-bezier(); */
     background-size: 100% 100%;
@@ -97,9 +100,9 @@ const description =
   }
 
   @media (max-width: 590px) {
-    /* .page-container {
-      background-position: 500px -200px;
-    } */
+    .page-container {
+      /* background-position: 500px -200px; */
+    }
   }
 
   @keyframes bg-movement {

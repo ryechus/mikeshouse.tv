@@ -15,6 +15,7 @@
     "@fontsource/libre-baskerville": "^5.0.13",
     "@fontsource/norwester": "^5.0.7",
     "@fontsource/rubik-one": "^5.0.1",
+    "@fontsource/space-mono": "^5.1.1",
     "astro": "^4.5.12",
     "install": "^0.13.0"
   }
