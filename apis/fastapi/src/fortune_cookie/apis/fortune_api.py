@@ -6,6 +6,7 @@ import pkgutil
 
 import openapi_server.impl
 import random
+import datetime
 
 from fastapi import (  # noqa: F401
     APIRouter,
@@ -47,3 +48,19 @@ for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
 @router.get("/")
 async def get_fortune_cookie() -> str:
     return random.choice(FORTUNES).replace("\n", "")
+
+
+@router.get("/time_until")
+async def get_when_is(date_str: str = None):
+    now = datetime.datetime.now()
+    date_obj = datetime.datetime.strptime(date_str, "%Y-%m-%d")
+    timediff_seconds = (date_obj - now).total_seconds()
+    days = int(timediff_seconds // 86_400)
+    days_remainder = timediff_seconds % 86_400
+    hours = int(days_remainder // 3600)
+    hours_remainder = days_remainder % 3600
+    minutes = int(hours_remainder // 60)
+    minutes_remainder = hours_remainder % 60
+    seconds = int(minutes_remainder)
+
+    return f"{days} days {hours} hours {minutes} minutes and {seconds} seconds"
