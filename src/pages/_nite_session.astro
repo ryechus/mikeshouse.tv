@@ -1,0 +1,112 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+import Socials from "../components/Socials.astro";
+
+const textUrl = "https://mikesafterdark.com/assets/nite%20session%20apr%2014%20txt.png";
+const backgroundUrl = "https://mikeshouse.tv/assets/nite%20session%20apr%2014%20bg.gif"
+const ogImageUrl = "https://mikeshouse.tv/assets/nite%20session%20apr%2014.gif";
+const ticketUrl = "https://posh.vip/f/26171?t=mikeshouse-tv";
+---
+
+<Layout title="Mike's House presents...Nite Session + Open Decks - March 31, 2025 @ The Graryson Bar DTLA" backgroundUrl={backgroundUrl} ogImageUrl={ogImageUrl}>
+	<main>
+		<img
+			class="poster-text"
+			src={textUrl}
+			alt="transparent poster with text only for Offline event"
+		/>
+		<Footer ticketUrl={ticketUrl}/>
+		<Socials />
+		<div class="poster-text">
+			<h1>Mike's House presents Nite Session + Open Decks sponsored by Niteflyers</h1>
+			<h2>Lineup</h2>
+			<ul>
+        <li>GITO</li>
+        <li>Algorhythm</li>
+				<li>SMLS</li>
+        <li>Ketchup</li>
+        <li>Mikezilla</li>
+			</ul>
+			<p>
+				Nite Session is a new party presented by Mike’s House. It’s the same great community that brought you the Block Party Pop Up, Mike’s Day Out, and Nite Sessions. Get off your phone. Get in the moment. Get offline.
+			</p>
+		</div>
+	</main>
+</Layout>
+
+<style>
+  main {
+    color: #ffffef;
+    font-size: 20px;
+  }
+  div.poster-text {
+    visibility: hidden;
+  }
+  .poster-text {
+    max-height: 96vh;
+    margin: 0 auto;
+    display: block;
+    margin-top: 0px;
+    margin-bottom: -80px;
+  }
+  @media (max-width: 590px) {
+    .poster-text {
+      max-width: 435px;
+      width: 100%;
+      max-height: 96vh;
+      display: block;
+      margin-bottom: -75px;
+    }
+  }
+  .astro-a {
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    transform: translatex(-50%);
+    width: 220px;
+    height: auto;
+    z-index: -1;
+  }
+  h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+  .instructions {
+    margin-bottom: 2rem;
+    border: 1px solid rgba(var(--accent-light), 25%);
+    background: linear-gradient(
+      rgba(var(--accent-dark), 66%),
+      rgba(var(--accent-dark), 33%)
+    );
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+  .instructions code {
+    font-size: 0.8em;
+    font-weight: bold;
+    background: rgba(var(--accent-light), 12%);
+    color: rgb(var(--accent-light));
+    border-radius: 4px;
+    padding: 0.3em 0.4em;
+  }
+  .instructions strong {
+    color: rgb(var(--accent-light));
+  }
+  .link-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+    gap: 2rem;
+    padding: 0;
+  }
+</style>

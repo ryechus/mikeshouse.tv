@@ -1,16 +1,15 @@
 ---
-// import '@fontsource/space-mono';
-// import '@fontsource/bebas-neue';
-import '@fontsource-variable/inter';
+import '@fontsource/space-mono';
+import '@fontsource/bebas-neue';
+import "@fontsource/norwester";
 
 interface Props {
   title: string;
   backgroundUrl: string;
   ogImageUrl: string;
-  backgroundHex?: string;
 }
 
-const { title, backgroundUrl, ogImageUrl, backgroundHex = '#000' } = Astro.props;
+const { title, backgroundUrl, ogImageUrl } = Astro.props;
 
 const backgroundUrlStyle = `url(${backgroundUrl})`;
 
@@ -21,7 +20,7 @@ const backgroundUrlStyle = `url(${backgroundUrl})`;
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={title} />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta property="og:title" content={title} />
     <meta property="og:type" content="article" />
@@ -42,11 +41,12 @@ const backgroundUrlStyle = `url(${backgroundUrl})`;
   </head>
   <body>
     <div class="page-container">
-      <slot />
+        <h1 class="title">Mike's House</h1>
+        <slot />
     </div>
   </body>
 </html>
-<style is:global define:vars={{ backgroundUrlStyle, backgroundHex }}>
+<style is:global define:vars={{ backgroundUrlStyle }}>
   :root {
     --accent: 136, 58, 234;
     --accent-light: 224, 204, 250;
@@ -59,7 +59,7 @@ const backgroundUrlStyle = `url(${backgroundUrl})`;
     );
   }
   html {
-    font-family: 'Inter Variable', sans-serif;
+    font-family: 'Bebas Neue';
     text-transform: uppercase;
     font-weight: 400;
   }
@@ -69,6 +69,8 @@ const backgroundUrlStyle = `url(${backgroundUrl})`;
     padding: 0;
     height: 100%;
     width: 100%;
+    background-color: white;
+    /* color: white; */
   }
   * {
     box-sizing: border-box;
@@ -90,16 +92,21 @@ const backgroundUrlStyle = `url(${backgroundUrl})`;
     border: 3px;
     margin: 0;
     padding: 0;
-    background-image: var(--backgroundUrlStyle);
-    background-color: var(--backgroundHex);
+    /* background-image: url("/new_bg.png"); */
     /* animation-duration: 30s;
     animation-name: bg-movement;
     animation-iteration-count: infinite;
     animation-timing-function: cubic-bezier(); */
     background-size: 100% 100%;
     overflow: hidden;
-    padding: 0;
+    padding: 100px 0;
     margin: 0;
+  }
+
+  h1.title {
+    font-family: "norwester";
+    text-align: center;
+    font-size: 3em;
   }
 
   @media (max-width: 590px) {

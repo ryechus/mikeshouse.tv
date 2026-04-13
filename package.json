@@ -11,12 +11,15 @@
   },
   "dependencies": {
     "@fontsource-variable/dm-sans": "^5.0.6",
+    "@fontsource-variable/inter": "^5.2.8",
     "@fontsource/bebas-neue": "^5.1.0",
     "@fontsource/libre-baskerville": "^5.0.13",
-    "@fontsource/norwester": "^5.0.7",
+    "@fontsource/norwester": "^5.2.5",
     "@fontsource/rubik-one": "^5.0.1",
+    "@fontsource/rubik-spray-paint": "^5.2.5",
     "@fontsource/space-mono": "^5.1.1",
-    "astro": "^4.5.12",
-    "install": "^0.13.0"
+    "astro": "6.0.4",
+    "install": "^0.13.0",
+    "three": "^0.175.0"
   }
 }

@@ -28,6 +28,12 @@ const socialLinks = [
     altText: "svg icon for Kick",
     class: "kick",
   },
+  {
+    href: "https://discord.com/invite/E5GP7Ejqf2",
+    imgSrc: "https://s3.us-east-1.amazonaws.com/mikechella.com/static/Discord-Symbol-Black.svg",
+    title: "link to Mike's House discord server",
+    altText: "svg icon for Discord symbol"
+  }
 ];
 ---
 
@@ -39,24 +45,6 @@ const socialLinks = [
       </a>
     ))
   }
-  <!-- <a
-    href="https://instagram.com/mikeshouse.tv"
-    title="link to mikeshouse.tv instagram"
-  >
-    <img
-      src="https://s3.amazonaws.com/mikechella.com/static/Instagram_Glyph_White.svg"
-      alt="icon for instagram"
-    />
-  </a>
-  <a
-    href="https://youtube.com/@thankyoumikezilla"
-    title="link to thankyoumikezilla's youtube"
-  >
-    <img
-      src="https://s3.amazonaws.com/mikechella.com/yt_icon_mono_dark.png"
-      alt="icon for youtube"
-    />
-  </a> -->
 </div>
 <style>
   a {
@@ -78,15 +66,15 @@ const socialLinks = [
   }
   .socials img {
     width: 25px;
-    filter: brightness(100%) saturate(0%) invert(0%) sepia(0%) hue-rotate(360deg) contrast(200%);
+    filter: brightness(0%) saturate(0%) invert(100%) sepia(0%) hue-rotate(360deg) contrast(200%);
   }
   img.kick {
     object-position: -44px;
     object-fit: contain;
     width: 63px !important;
     margin-right: -44px;
-    filter: saturate(0%) brightness(0) invert(0);
-    -webkit-filter: saturate(0%) brightness(0) invert(0);
+    filter: saturate(0%) brightness(0) invert(100%);
+    -webkit-filter: saturate(0%) brightness(100%) invert(0);
   }
   @media (max-width: 590px) {
     .socials {

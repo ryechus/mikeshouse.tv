@@ -1,9 +1,12 @@
 ---
+import type { string } from 'astro:schema';
+
 interface Props {
   ticketUrl: string;
+  ticketText?: string;
 }
 
-const { ticketUrl } = Astro.props;
+const { ticketUrl, ticketText = "Buy Tickets" } = Astro.props;
 
 ---
 
@@ -11,7 +14,7 @@ const { ticketUrl } = Astro.props;
 	<a
 		id="get_tickets"
 		href={ticketUrl}
-		>rsvp</a
+		>{ticketText}</a
 	>
 </div>
 <style>
@@ -22,23 +25,23 @@ const { ticketUrl } = Astro.props;
 	a:visited,
 	a:active,
 	a:hover {
-		color: white;
-		font-size: 1.13em;
+		color: #fa5182;
+		font-size: 1em;
 	}
 </style>
 <script>
-	const referrer = new URL(document.referrer);
+	// const referrer = new URL(document.referrer);
 
-	let affSuffix = "";
-	if (referrer.hostname === "instagram.com") {
-		affSuffix = "instagram";
-	}
+	// let affSuffix = "";
+	// if (referrer.hostname === "instagram.com") {
+	// 	affSuffix = "instagram";
+	// }
 
-	const getTicketsElement = document.getElementById("get_tickets");
-	const getTicketsHref = new URL(getTicketsElement.getAttribute("href"));
+	// const getTicketsElement = document.getElementById("get_tickets");
+	// const getTicketsHref = new URL(getTicketsElement.getAttribute("href"));
 
-	const currentAff = getTicketsHref.searchParams.get("aff");
-	getTicketsHref.searchParams.set("aff", `${currentAff}${affSuffix}`);
+	// const currentAff = getTicketsHref.searchParams.get("aff");
+	// getTicketsHref.searchParams.set("aff", `${currentAff}${affSuffix}`);
 
-	getTicketsElement.setAttribute("href", getTicketsHref.href);
+	// getTicketsElement.setAttribute("href", getTicketsHref.href);
 </script>
