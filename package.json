@@ -10,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
     "@fontsource-variable/dm-sans": "^5.0.6",
     "@fontsource-variable/inter": "^5.2.8",
     "@fontsource/bebas-neue": "^5.1.0",
@@ -18,8 +19,15 @@
     "@fontsource/rubik-one": "^5.0.1",
     "@fontsource/rubik-spray-paint": "^5.2.5",
     "@fontsource/space-mono": "^5.1.1",
+    "@tailwindcss/vite": "^4.2.3",
     "astro": "6.0.4",
     "install": "^0.13.0",
+    "tailwindcss": "^4.2.3",
     "three": "^0.175.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
+    "prettier": "3.8.3",
+    "prettier-plugin-astro": "0.14.1"
   }
 }

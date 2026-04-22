@@ -3,6 +3,10 @@ import '@fontsource/space-mono';
 import '@fontsource/bebas-neue';
 import "@fontsource/norwester";
 
+import AppleTouchIcon from "../images/apple-touch-icon.png";
+import FavIcon16x16 from "../images/favicon-16x16.png";
+import FavIcon32x32 from "../images/favicon-32x32.png";
+
 interface Props {
   title: string;
   backgroundUrl: string;
@@ -33,9 +37,9 @@ const backgroundUrlStyle = `url(${backgroundUrl})`;
     <meta property="og:image:height" content="480" />
     <meta property="og:url" content="https://mikeshouse.tv" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href={AppleTouchIcon.src}>
+    <link rel="icon" type="image/png" sizes="32x32" href={FavIcon32x32.src}>
+    <link rel="icon" type="image/png" sizes="16x16" href={FavIcon16x16.src}>
     <link rel="manifest" href="/site.webmanifest">
     <title>{title}</title>
   </head>
@@ -98,8 +102,8 @@ const backgroundUrlStyle = `url(${backgroundUrl})`;
     animation-iteration-count: infinite;
     animation-timing-function: cubic-bezier(); */
     background-size: 100% 100%;
-    overflow: hidden;
-    padding: 100px 0;
+    /* overflow: hidden; */
+    padding: 10px 0;
     margin: 0;
   }
 
@@ -107,6 +111,7 @@ const backgroundUrlStyle = `url(${backgroundUrl})`;
     font-family: "norwester";
     text-align: center;
     font-size: 3em;
+    font-weight: normal;
   }
 
   @media (max-width: 590px) {

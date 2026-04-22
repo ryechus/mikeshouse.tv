@@ -30,10 +30,11 @@ const socialLinks = [
   },
   {
     href: "https://discord.com/invite/E5GP7Ejqf2",
-    imgSrc: "https://s3.us-east-1.amazonaws.com/mikechella.com/static/Discord-Symbol-Black.svg",
+    imgSrc:
+      "https://s3.us-east-1.amazonaws.com/mikechella.com/static/Discord-Symbol-Black.svg",
     title: "link to Mike's House discord server",
-    altText: "svg icon for Discord symbol"
-  }
+    altText: "svg icon for Discord symbol",
+  },
 ];
 ---
 
@@ -56,27 +57,28 @@ const socialLinks = [
     display: inline-flex;
     vertical-align: middle;
   }
-  .socials {
+  /* .socials {
     position: absolute;
     right: 25px;
     bottom: 25px;
     text-align: center;
     display: flex;
     justify-content: center;
-  }
+  } */
   .socials img {
     width: 25px;
-    filter: brightness(0%) saturate(0%) invert(100%) sepia(0%) hue-rotate(360deg) contrast(200%);
+    filter: brightness(0%) saturate(0%) invert(0%) sepia(0%) hue-rotate(360deg)
+      contrast(200%);
   }
   img.kick {
     object-position: -44px;
     object-fit: contain;
     width: 63px !important;
     margin-right: -44px;
-    filter: saturate(0%) brightness(0) invert(100%);
+    filter: saturate(0%) brightness(0) invert(0%);
     -webkit-filter: saturate(0%) brightness(100%) invert(0);
   }
-  @media (max-width: 590px) {
+  /* @media (max-width: 590px) {
     .socials {
       position: unset;
       right: unset;
@@ -86,7 +88,7 @@ const socialLinks = [
       margin: 0 auto;
       margin-top: 10px;
     }
-  }
+  } */
   a,
   a:visited,
   a:active,

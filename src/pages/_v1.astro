@@ -1,0 +1,200 @@
+---
+import Layout from "../layouts/NewLayout.astro";
+import Footer from "../components/Footer.astro";
+import Socials from "../components/Socials.astro";
+import Shows from "../components/Shows.astro";
+
+import BannerImage from "../images/page_banner.png";
+import BlackBarShirt from "../images/mikes_house_black_bar.png";
+
+const textUrl = `/${encodeURIComponent("POP UP may 24 2025 txt.png")}`;
+const backgroundUrl = `/${encodeURIComponent("POP UP may 24 2025 bg.png")}`;
+const ogImageUrl = `/${encodeURIComponent("Mike's House Banner.png")}`;
+const ticketUrl = "https://posh.vip/f/2bb41?t=mikeshouse-tv";
+const eventDate = "May 12, 2025 00:00:00"
+const eventDateTime = new Date(eventDate)
+
+const showLinks = [
+  {
+    href: "https://posh.vip/f/36c2b?t=mikeshouse-tv",
+    title: "Nite Session + Open Decks July 21",
+    date: "2025-07-21",
+    text: "Nite Session - July 21"
+
+  },
+  {
+    href: "https://festivalttv.com/tickets/",
+    title: "festiVal - July 26 & 27 | Los Angeles",
+    date: "2025-07-26",
+    text: "festiVal - July 26"
+  },
+  {
+    href: "https://posh.vip/f/34d23?t=mikeshouse-tv",
+    title: "Pop Up - August 2 | Los Angeles",
+    date: "2025-08-02",
+    text: "Pop Up - August 2"
+  }
+]
+---
+
+<Layout title=`Mike's House` backgroundUrl={backgroundUrl} ogImageUrl={BannerImage.src}>
+	<main>
+    <!-- <Shows links={showLinks} /> -->
+    <div class="featured-product">
+        <img src={BlackBarShirt.src} alt="Photo of a white shirt with the word house in all caps in the middle of the shirt in white text over a black background.">
+        <div>
+            <p><a href="https://square.link/u/SBtk0Zcy">Pre-Order</a></p>
+        </div>
+    </div>
+    <div class="video-container">
+      <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/videoseries?si=Qp1VdmHvd9_FaaD5&amp;list=PLfR3iS3SztVkTH_sEGGBOFXK4SYBJX6jD;modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+		<!-- <Socials /> -->
+	</main>
+</Layout>
+
+<style>
+  main {
+    color: black !important;
+    font-size: 20px;
+    position: relative;
+    height: 100%;
+  }
+
+  a,
+  a:visited,
+  a:active,
+  a:hover {
+    color: black;
+    /* font-size: 1.25em; */
+  }
+  div.poster-text {
+    visibility: hidden;
+  }
+  div.video-container {
+    margin: 0px auto 35px;
+    width: 560px;
+  }
+  .poster-text {
+    max-height: 96vh;
+    margin: 0 auto;
+    display: block;
+    margin-top: 0px;
+    margin-bottom: -80px;
+  }
+  @media (max-width: 590px) {
+    .poster-text {
+      max-width: 435px;
+      width: 100%;
+      max-height: 96vh;
+      display: block;
+      margin-bottom: -75px;
+    }
+  }
+  .astro-a {
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    transform: translatex(-50%);
+    width: 220px;
+    height: auto;
+    z-index: -1;
+  }
+  h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+  .instructions {
+    margin-bottom: 2rem;
+    border: 1px solid rgba(var(--accent-light), 25%);
+    background: linear-gradient(
+      rgba(var(--accent-dark), 66%),
+      rgba(var(--accent-dark), 33%)
+    );
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+  .instructions code {
+    font-size: 0.8em;
+    font-weight: bold;
+    background: rgba(var(--accent-light), 12%);
+    color: rgb(var(--accent-light));
+    border-radius: 4px;
+    padding: 0.3em 0.4em;
+  }
+  .instructions strong {
+    color: rgb(var(--accent-light));
+  }
+  .link-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+    gap: 2rem;
+    padding: 0;
+  }
+
+  .featured-product {
+    width: 750px;
+    margin: 0px auto;
+    text-align: center;
+  }
+
+  .featured-product img {
+    width: 100%;
+  }
+</style>
+<style is:global>
+  .page-container {
+    background-size: 100vw 100vw !important;
+    background-position: center !important;
+
+    animation-duration: 25s !important;
+    /* animation-name: bg-rotate !important; */
+    animation-iteration-count: infinite !important;
+    /* animation-timing-function: cubic-bezier() !important; */
+  }
+
+  @media (max-width: 590px) {
+    .page-container {
+
+      background-size: 1024px 1024px !important;
+      /* background-position: 500px -200px; */
+    }
+
+    div.video-container {
+      width: 390px !important;
+      margin: 0 auto 35px !important;
+      padding: 0 10px;
+    }
+
+    div.video-container iframe {
+      width: 370px;
+      height: 215px;
+    }
+  }
+
+
+
+  @keyframes bg-rotate {
+    from {
+      transform: rotate(0deg);
+    }
+
+    50% {
+      transform: rotate(180deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>

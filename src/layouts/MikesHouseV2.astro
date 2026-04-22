@@ -1,0 +1,109 @@
+---
+import "../styles/global.css";
+import "@fontsource/norwester";
+
+import AppleTouchIcon from "@images/apple-touch-icon.png";
+import FavIcon16x16 from "@images/favicon-16x16.png";
+import FavIcon32x32 from "@images/favicon-32x32.png";
+
+import BannerImage from "@images/page_banner.png";
+
+import { siteTitle } from "@config";
+import Socials from "@components/Socials.astro";
+
+const navLinks = [
+  {
+    href: "/",
+    text: "home",
+  },
+  {
+    href: "/videos",
+    text: "videos",
+  },
+  {
+    href: "/shop",
+    text: "shop",
+  },
+];
+
+interface Props {
+  title: string;
+  description: string;
+  hideHeader?: boolean;
+}
+
+const { title = "", description, hideHeader = false } = Astro.props;
+
+const canonicalURL = new URL(Astro.originPathname, Astro.site);
+const fullTitle = title !== "" ? `${siteTitle} - ${title}` : siteTitle;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={BannerImage.src} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteTitle} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="apple-touch-icon" sizes="180x180" href={AppleTouchIcon.src} />
+    <link rel="icon" type="image/png" sizes="32x32" href={FavIcon32x32.src} />
+    <link rel="icon" type="image/png" sizes="16x16" href={FavIcon16x16.src} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <title>{fullTitle}</title>
+  </head>
+  <body>
+    <div class="@container w-full">
+      <div class="mx-auto flex flex-col h-screen">
+        <div class="text-center h-45 mx-auto flex flex-col justify-end">
+          {
+            !hideHeader && (
+              <h1 class="uppercase mb-0 text-5xl">
+                <a class="no-underline" href="/">
+                  {" "}
+                  Mike's House{" "}
+                </a>
+              </h1>
+            )
+          }
+          {
+            !hideHeader && (
+              <nav class="flex flex-row justify-center text-2xl">
+                {navLinks.map((link) => (
+                  <span>
+                    <a href={link.href}>{link.text}</a>
+                  </span>
+                ))}
+              </nav>
+            )
+          }
+        </div>
+        <div
+          class="flex-1 flex flex-col justify-start text-center sm:max-w-3/4 md:max-w-11/16 lg:max-w-39/64 xl:max-w-43/64 2xl:max-w-38/64 mx-auto pt-10 sm:pt-5"
+        >
+          <slot />
+        </div>
+        <footer
+          class="py-5 pb-15 px-6 flex flex-col justify-center mx-auto uppercase text-xs text-center"
+        >
+          <Socials />
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
+
+<style>
+  nav span {
+    margin: 0 5px;
+  }
+</style>

@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+html {
+  font-family: "norwester";
+}
+
+@layer base {
+  a {
+    @apply underline underline-offset-3;
+  }
+
+  a:hover {
+    @apply text-gray-500 no-underline;
+  }
+}
