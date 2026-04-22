@@ -1,0 +1,52 @@
+name: Build and Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+    branch:
+      description: "Select the branch to deploy"
+      required: true
+      default: "main"
+      type: string
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "public/**"
+      - "astro.config.mjs"
+      - "bun.lockb"
+
+env:
+  AWS_REGION: "us-east-1" #Change to reflect your Region
+
+# Permission can be added at job level or workflow level
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read # This is required for actions/checkout
+
+jobs:
+  AstroBuildAndDeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.branch }}
+      - name: Build site
+        uses: withastro/action@v4
+        with:
+          path: .
+          package-manager: bun@latest
+          build-cmd: NODE_ENV=production bun run build
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1.7.0
+        with:
+          role-to-assume: arn:aws:iam::188863028714:role/github-actions #change to reflect your IAM role’s ARN
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Sync with S3
+        run: |
+          aws s3 sync ./dist s3://mikesafterdark.com
+      - name: Invalidate Cloudfront
+        run: |
+          aws cloudfront create-invalidation --distribution-id E1GT09CPFOD0EF --paths "/*"
