@@ -21,6 +21,7 @@
     "@fontsource/space-mono": "^5.1.1",
     "@tailwindcss/vite": "^4.2.3",
     "astro": "6.0.4",
+    "astrojs-mixpanel": "^1.0.3",
     "install": "^0.13.0",
     "tailwindcss": "^4.2.3",
     "three": "^0.175.0"

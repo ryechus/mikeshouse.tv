@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
-
+import mixpanel from "astrojs-mixpanel";
 import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
@@ -11,5 +11,17 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [sitemap()],
+  integrations: [
+    sitemap(),
+    mixpanel({
+      token: "507de4cce4c41aa7cd5639fe06b1b0cd",
+      config: {
+        track_pageview: false,
+        persistence: "localStorage",
+        batch_requests: true,
+        debug: process.env.NODE_ENV === "development",
+      },
+      autoTrack: true, // Enable automatic page view tracking
+    }),
+  ],
 });
