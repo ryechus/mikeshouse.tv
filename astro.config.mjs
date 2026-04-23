@@ -21,7 +21,8 @@ export default defineConfig({
         batch_requests: true,
         debug: process.env.NODE_ENV === "development",
       },
-      autoTrack: true, // Enable automatic page view tracking
+      autoTrack: true,
+      autocapture: true, // Enable automatic page view tracking
     }),
   ],
 });
