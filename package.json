@@ -25,6 +25,7 @@
     "astro": "6.0.4",
     "astrojs-mixpanel": "^1.0.3",
     "install": "^0.13.0",
+    "moment": "^2.30.1",
     "tailwindcss": "^4.2.3",
     "three": "^0.175.0"
   },
