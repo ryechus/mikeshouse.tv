@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@theme {
+  --font-roboto-flex: "Roboto Flex Variable", sans-serif;
+}
+
 html {
   font-family: "norwester";
 }

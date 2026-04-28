@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/svelte": "^8.0.5",
     "@fontsource-variable/dm-sans": "^5.0.6",
     "@fontsource-variable/inter": "^5.2.8",
+    "@fontsource-variable/roboto-flex": "^5.2.8",
     "@fontsource/bebas-neue": "^5.1.0",
     "@fontsource/libre-baskerville": "^5.0.13",
     "@fontsource/norwester": "^5.2.5",

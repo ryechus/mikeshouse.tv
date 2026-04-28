@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import "@fontsource/norwester";
+import "@fontsource-variable/roboto-flex/wght.css";
 
 import AppleTouchIcon from "@images/apple-touch-icon.png";
 import FavIcon16x16 from "@images/favicon-16x16.png";
@@ -90,7 +91,7 @@ const fullTitle = title !== "" ? `${siteTitle} - ${title}` : siteTitle;
           }
         </div>
         <div
-          class="flex-1 flex flex-col justify-start text-center sm:max-w-3/4 md:max-w-11/16 lg:max-w-39/64 xl:max-w-43/64 2xl:max-w-38/64 mx-auto pt-10 sm:pt-5"
+          class="flex-1 flex flex-col justify-start text-center mx-auto pt-10 sm:pt-5"
         >
           <slot />
         </div>
