@@ -1,0 +1,31 @@
+---
+import data from "@data/yt-playlist.json";
+
+const items = data.items;
+const nonPrivate = items.filter(
+  (item: any) => item.snippet.title.toLowerCase() !== "private video",
+);
+
+const youtubeUrl = (videoId: string) => {
+  return `https://youtu.be/${videoId}`;
+};
+---
+
+<div class="uppercase px-10">
+  {
+    nonPrivate.map((item: any) => (
+      <div class="mb-10 md:max-w-300 xl:max-w-3/4 mx-auto">
+        <a href={youtubeUrl(item.contentDetails.videoId)}>
+          <p class="text-left mb-2">{item.snippet.title}</p>
+          <img class="thumbnail" src={item.snippet.thumbnails.maxres.url} />
+        </a>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  img.thumbnail:hover {
+    filter: brightness(85%); /* 100% is normal, lower is darker */
+  }
+</style>

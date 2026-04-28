@@ -1,17 +1,8 @@
 ---
+import PodcastPlaylist from "@components/PodcastPlaylist.astro";
 import MikesHouseV2 from "@layouts/MikesHouseV2.astro";
 ---
 
 <MikesHouseV2 title="Videos" description="Mike's House VODs">
-  <div class="aspect-video">
-    <p class="hidden md:block invisible w-full" style="width:700px;">&nbsp;</p>
-    <iframe
-      class="aspect-video w-full h-full"
-      src="https://www.youtube-nocookie.com/embed/videoseries?si=Qp1VdmHvd9_FaaD5&list=PLfR3iS3SztVkTH_sEGGBOFXK4SYBJX6jD;modestbranding=1"
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerpolicy="strict-origin-when-cross-origin"
-      allowfullscreen></iframe>
-  </div>
+  <PodcastPlaylist />
 </MikesHouseV2>

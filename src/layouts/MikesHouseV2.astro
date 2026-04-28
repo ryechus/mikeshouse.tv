@@ -64,7 +64,9 @@ const fullTitle = title !== "" ? `${siteTitle} - ${title}` : siteTitle;
   <body>
     <div class="@container w-full">
       <div class="mx-auto flex flex-col h-screen">
-        <div class="text-center h-45 mx-auto flex flex-col justify-end">
+        <div
+          class="text-center h-45 mx-auto flex flex-col justify-end shrink-0"
+        >
           {
             !hideHeader && (
               <h1 class="uppercase mb-0 text-5xl">

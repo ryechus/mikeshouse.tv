@@ -9,7 +9,9 @@
       "@styles/*": ["./src/styles/*"],
       "@utils/*": ["./src/utils/*"],
       "@images/*": ["./src/images/*"],
-      "@config": ["./src/config.ts"]
+      "@config": ["./src/config.ts"],
+      "@svelte": ["./src/svelte/src/*"],
+      "@data": ["./src/data/*"]
     }
   }
 }
