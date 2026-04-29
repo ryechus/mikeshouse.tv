@@ -22,13 +22,6 @@ const socialLinks = [
     altText: "svg icon for Twitch",
   },
   {
-    href: "https://kick.com/thankyoumikezilla",
-    imgSrc: "https://s3.amazonaws.com/mikechella.com/static/Kick_logo.svg",
-    title: "link to thankyoumikezilla on kick",
-    altText: "svg icon for Kick",
-    class: "kick",
-  },
-  {
     href: "https://discord.com/invite/E5GP7Ejqf2",
     imgSrc:
       "https://s3.us-east-1.amazonaws.com/mikechella.com/static/Discord-Symbol-Black.svg",
@@ -36,37 +29,37 @@ const socialLinks = [
     altText: "svg icon for Discord symbol",
   },
 ];
+
+interface Props {
+  iconWidth?: number;
+}
+
+const { iconWidth = 25 } = Astro.props;
+
+const iconWidthCSS = `${iconWidth}px`;
 ---
 
 <div class="socials">
   {
     socialLinks.map((data) => (
       <a href={data.href} title={data.title}>
-        <img class={data.class} src={data.imgSrc} alt={data.altText} />
+        <img src={data.imgSrc} alt={data.altText} />
       </a>
     ))
   }
 </div>
-<style>
+<style define:vars={{ iconWidthCSS }}>
   a {
     text-decoration: none;
-    margin: 0 6px;
+    margin: 0 3px;
   }
   img {
     white-space: nowrap;
     display: inline-flex;
     vertical-align: middle;
   }
-  /* .socials {
-    position: absolute;
-    right: 25px;
-    bottom: 25px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-  } */
   .socials img {
-    width: 25px;
+    width: var(--iconWidthCSS);
     filter: brightness(0%) saturate(0%) invert(0%) sepia(0%) hue-rotate(360deg)
       contrast(200%);
   }

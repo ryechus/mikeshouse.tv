@@ -23,7 +23,7 @@ const readableDateTime = (dateTime: string) => {
 >
   {
     nonPrivate.map((item: any) => (
-      <div class="text-left space-around mx-auto sm:px-10 sm:max-w-7/8 lg:p-1.5 lg:basis-1/3 lg:max-w-3/4 mb-5 sm:mb-0">
+      <div class="text-left sm:px-10 sm:max-w-7/8 lg:p-1.5 lg:basis-1/3 lg:max-w-3/4 mb-5 sm:mb-0">
         <a
           class="no-underline lowercase"
           href={youtubeUrl(item.contentDetails.videoId)}
@@ -33,7 +33,9 @@ const readableDateTime = (dateTime: string) => {
             src={item.snippet.thumbnails.maxres.url}
           />
           <p class="mt-2 line-clamp-1">{item.snippet.title}</p>
-          <p class="text-xs">{readableDateTime(item.snippet.publishedAt)}</p>
+          <p class="text-xs">
+            {readableDateTime(item.contentDetails.videoPublishedAt)}
+          </p>
         </a>
       </div>
     ))
