@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
+import svelte from "@astrojs/svelte";
 import mixpanel from "astrojs-mixpanel";
 import sitemap from "@astrojs/sitemap";
 
@@ -23,6 +24,9 @@ export default defineConfig({
       },
       autoTrack: true,
       autocapture: true, // Enable automatic page view tracking
+    }),
+    svelte({
+      extensions: [".svelte"],
     }),
   ],
 });
