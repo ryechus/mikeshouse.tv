@@ -1,8 +1,9 @@
 ---
 import MikesHouseV2 from "@layouts/MikesHouseV2.astro";
-import Donations from "../svelte/src/Donations.svelte";
+// import Donations from "../svelte/src/Donations.svelte";
+import Donations from "@components/Donations.astro";
 ---
 
 <MikesHouseV2 title="Videos" description="Mike's House VODs">
-  <Donations client:load />
+  <Donations />
 </MikesHouseV2>
