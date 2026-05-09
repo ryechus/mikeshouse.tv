@@ -1,5 +1,6 @@
 ---
 import TwitchGlitch from "@images/glitch_flat_white.png";
+import { backendUrl, siteUrl } from "@config";
 const prepopValues = [
   {
     text: "2",
@@ -19,10 +20,10 @@ const buttonClasses =
   "m-1 sm:m-2 bg-black text-white p-4 py-3 rounded-md hover:bg-gray-100 hover:text-black border-3 cursor-pointer text-lg w-30 uppercase";
 const buttonSelector = "preprop-vals";
 const twitchClientId = "689cezddnt6abeht2rj9qqkj89ptol";
-const implicitGrant = `https://id.twitch.tv/oauth2/authorize?client_id=${twitchClientId}&redirect_uri=http://localhost:4321/tips&response_type=token&state=zilla&scope=user%3Aread%3Aemail`;
+const implicitGrant = `https://id.twitch.tv/oauth2/authorize?client_id=${twitchClientId}&redirect_uri=${siteUrl}/tips&response_type=token&scope=user%3Aread%3Aemail`;
 ---
 
-<form action="http://localhost:8000/payment-link/create" method="post">
+<form action=`${backendUrl}/payment-link/create` method="post">
   <input id="userEmail" name="userEmail" type="hidden" />
   <div class="w-7/8 sm:w-full mx-auto">
     <div class="font-roboto-flex">
@@ -226,13 +227,7 @@ const implicitGrant = `https://id.twitch.tv/oauth2/authorize?client_id=${twitchC
     element.classList.remove("hidden");
   }
 
-  function handleCheckout(e) {
-    console.log(userEmail, userDisplayName, userTipMessage, amount);
-    e.preventDefault();
-  }
   const checkoutBtnElement = document.getElementById("checkoutBtn");
-  //   checkoutBtnElement.addEventListener("click", handleCheckout);
-  //   checkoutBtnElement.addEventListener("touchstart", handleCheckout);
 
   setAmount(amount);
 </script>
