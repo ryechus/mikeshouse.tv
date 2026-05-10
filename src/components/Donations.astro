@@ -58,9 +58,9 @@ const implicitGrant = `https://id.twitch.tv/oauth2/authorize?client_id=${twitchC
     </div>
     <div id="userNameDiv" class="my-5 hidden">
       <div
-        class="flex items-center rounded-md bg-white outline-1 -outline-offset-1 outline-black outline-3 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600 w-3/4 mx-2 sm:mx-auto text-lg my-2 pl-3 mx-auto font-roboto-flex"
+        class="flex items-center rounded-md bg-white outline-1 -outline-offset-1 outline-black outline-3 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600 w-3/4 mx-2 sm:mx-auto text-sm my-2 pl-3 mx-auto font-roboto-flex"
       >
-        <div class="text-gray-500 select-none">name:</div>
+        <!-- <div class="text-gray-500 select-none">name:</div> -->
         <input
           readonly
           id="userName"
@@ -71,37 +71,36 @@ const implicitGrant = `https://id.twitch.tv/oauth2/authorize?client_id=${twitchC
         />
       </div>
       <div
-        class="flex items-center rounded-md bg-white outline-1 -outline-offset-1 outline-black outline-3 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600 w-3/4 mx-2 sm:mx-auto text-lg my-2 pl-3 mx-auto font-roboto-flex mt-5"
+        class="flex items-center rounded-md bg-white outline-1 -outline-offset-1 outline-black outline-3 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600 w-3/4 mx-2 sm:mx-auto text-sm my-2 pl-3 mx-auto font-roboto-flex mt-5"
       >
-        <div class="text-gray-500 select-none">message:</div>
+        <!-- <div class="text-gray-500 select-none">message:</div> -->
         <input
           id="tipMessage"
           type="text"
           name="tipMessage"
-          placeholder=""
+          placeholder="enter a message"
           class="w-full p-4 py-3 pl-1 placeholder:text-gray-400 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none text-left"
         />
       </div>
     </div>
-    <a class="mr-3 no-underline connectWithTwitch" href={implicitGrant}>
-      <div
-        id="connectWithTwitch"
-        class="bg-[#9146ff] w-50 mx-auto p-4 my-4 hidden"
-      >
-        <p
-          class="flex justify-center text-white font-roboto-flex text-xs uppercase items-center"
-        >
-          Connect with Twitch<img
-            class="twitchIcon w-5 ml-2"
-            src={TwitchGlitch.src}
-          />
-        </p>
-      </div>
-    </a>
+    <div id="connectWithTwitch" class="hidden">
+      <a class="no-underline" href={implicitGrant}>
+        <div class="bg-[#9146ff] hover:bg-[#6b32be] w-50 mx-auto p-4 my-4">
+          <p
+            class="flex justify-center text-white font-roboto-flex text-xs uppercase items-center"
+          >
+            Connect with Twitch<img
+              class="twitchIcon w-5 ml-2"
+              src={TwitchGlitch.src}
+            />
+          </p>
+        </div>
+      </a>
+    </div>
     <div class="w-full">
       <button
         id="checkoutBtn"
-        class="uppercase text-xl cursor-pointer bg-black text-white p-4 py-3 rounded-md disabled:bg-gray-100 hover:text-gray-500 active:text-gray-500 hover:bg:gray-700 active:bg-gray-700"
+        class="uppercase text-xl enabled:cursor-pointer bg-black text-white p-4 py-3 rounded-md disabled:bg-gray-100 enabled:hover:text-gray-100 enabled:active:text-gray-200 hover:bg-gray-900 active:bg-gray-700"
         disabled
       >
         submit
@@ -113,18 +112,6 @@ const implicitGrant = `https://id.twitch.tv/oauth2/authorize?client_id=${twitchC
     </div>
   </div>
 </form>
-
-<style>
-  a.connectWithTwitch:active {
-    text-color: white;
-  }
-  a.connectWithTwitch:hover {
-    text-color: white;
-  }
-  a.connectWithTwitch {
-    text-color: white;
-  }
-</style>
 
 <script define:vars={{ buttonSelector, twitchClientId }}>
   const buttons = document.querySelectorAll(`.${buttonSelector}`);
