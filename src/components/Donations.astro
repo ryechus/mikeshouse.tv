@@ -74,13 +74,12 @@ const implicitGrant = `https://id.twitch.tv/oauth2/authorize?client_id=${twitchC
         class="flex items-center rounded-md bg-white outline-1 -outline-offset-1 outline-black outline-3 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600 w-3/4 mx-2 sm:mx-auto text-sm my-2 pl-3 mx-auto font-roboto-flex mt-5"
       >
         <!-- <div class="text-gray-500 select-none">message:</div> -->
-        <input
+        <textarea
           id="tipMessage"
-          type="text"
           name="tipMessage"
           placeholder="enter a message"
-          class="w-full p-4 py-3 pl-1 placeholder:text-gray-400 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none text-left"
-        />
+          class="w-full p-4 py-3 pl-1 placeholder:text-gray-400 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none text-left resize-none"
+        ></textarea>
       </div>
     </div>
     <div id="connectWithTwitch" class="hidden">
@@ -201,6 +200,10 @@ const implicitGrant = `https://id.twitch.tv/oauth2/authorize?client_id=${twitchC
       );
 
       document.cookie = `twitchAccessToken=${accessToken}; expires=${sixtyDaysFromNow.toUTCString()}`;
+
+      const url = new URL(window.location);
+      url.hash = "";
+      history.replaceState(null, document.title, url.toString());
     }
   }
 
