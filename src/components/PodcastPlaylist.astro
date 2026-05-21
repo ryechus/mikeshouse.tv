@@ -16,13 +16,14 @@ const youtubeUrl = (videoId: string) => {
 };
 
 const readableDateTime = (dateTime: string) => {
-  const gmtTime = new Date(dateTime);
   const m = moment(dateTime, moment.ISO_8601);
   return m.fromNow();
 };
 
 const showsCheckboxId = "selectShows";
 const vodsCheckboxId = "selectVODS";
+const searchBarId = "fliterSearchId";
+const noSearchResultsId = "noSearchResults";
 
 function compareFn(a: any, b: any) {
   const aPubAt = new Date(a.contentDetails.videoPublishedAt);
@@ -41,10 +42,17 @@ const isShow = (item: any) => {
 const checkBoxClasses = "mr-1 checkbox checkbox-neutral checkbox-xs";
 ---
 
-<div class="px-4.25 sm:px-10">
-  <div class="mb-1 sm:px-10 lg:px-1 text-left flex flex-row">
-    <!-- <FilterIcon /> -->
-    <p class="ml-1 text-lg justify-after videoFilters">
+<div class="px-4.25 sm:px-10 shrink-0 min-w-full">
+  <div
+    class="mb-4 sm:mb-1 sm:pl-10 lg:pl-1 text-left flex flex-row justify-after items-center"
+  >
+    <input
+      id={searchBarId}
+      type="text"
+      class="input max-w-1/2 input-ghost input-md font-roboto-flex font-semibold"
+      placeholder="search"
+    />
+    <div class="ml-auto text-lg videoFilters pr-1">
       <input
         id={showsCheckboxId}
         class={checkBoxClasses}
@@ -57,13 +65,17 @@ const checkBoxClasses = "mr-1 checkbox checkbox-neutral checkbox-xs";
         type="checkbox"
         checked="checked"
       /><span>vods</span>
-    </p>
+    </div>
   </div>
   <div class="font-roboto-flex font-semibold flex flex-row flex-wrap">
+    <div id={noSearchResultsId} class="min-w-full hidden">
+      <p class="pt-10">No videos found</p>
+    </div>
     {
       items.map((item: any) => (
         <div
-          class={`text-left sm:px-10 sm:max-w-7/8 lg:p-1.5 lg:basis-1/3 lg:max-w-3/4 mb-5 sm:mb-0 ${isShow(item) ? "shows" : "vods"}`}
+          data-title={item.snippet.title}
+          class={`text-left sm:px-10 sm:max-w-7/8 lg:p-1.5 lg:basis-1/3 lg:max-w-3/4 mb-5 sm:mb-0 videoThumbnails ${isShow(item) ? "shows" : "vods"}`}
         >
           <a
             class="no-underline lowercase"
@@ -91,9 +103,25 @@ const checkBoxClasses = "mr-1 checkbox checkbox-neutral checkbox-xs";
   }
 </style>
 
-<script define:vars={{ showsCheckboxId, vodsCheckboxId }}>
+<script
+  define:vars={{
+    showsCheckboxId,
+    vodsCheckboxId,
+    searchBarId,
+    noSearchResultsId,
+  }}
+>
   const showsCheckbox = document.getElementById(showsCheckboxId);
   const vodsCheckbox = document.getElementById(vodsCheckboxId);
+  const searchBar = document.getElementById(searchBarId);
+
+  const debounce = (func, delay) => {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), delay);
+    };
+  };
 
   const toggleShowsVisibility = (visible, thumbnailType) => {
     let thumbnails = undefined;
@@ -114,6 +142,36 @@ const checkBoxClasses = "mr-1 checkbox checkbox-neutral checkbox-xs";
     });
   };
 
+  const textSearch = debounce((e) => {
+    const thumbnails = document.querySelectorAll(".videoThumbnails");
+    const notFoundElement = document.getElementById(noSearchResultsId);
+
+    const val = e.target.value;
+    console.log("running search:", val);
+    let found = false;
+    if (val.trim() !== "") {
+      thumbnails.forEach((card) => {
+        if (!card.dataset.title.includes(e.target.value)) {
+          notFoundElement.classList.add("hidden");
+          card.classList.add("hidden");
+        } else {
+          card.classList.remove("hidden");
+          found = true;
+        }
+      });
+
+      if (!found) {
+        notFoundElement.classList.remove("hidden");
+      }
+    } else {
+      thumbnails.forEach((card) => {
+        card.classList.remove("hidden");
+      });
+      notFoundElement.classList.add("hidden");
+    }
+    return;
+  }, 250);
+
   const toggle = (e) => {
     if (e.target.id === showsCheckboxId) {
       toggleShowsVisibility(e.target.checked, "shows");
@@ -126,4 +184,5 @@ const checkBoxClasses = "mr-1 checkbox checkbox-neutral checkbox-xs";
 
   showsCheckbox.addEventListener("change", toggle);
   vodsCheckbox.addEventListener("change", toggle);
+  searchBar.addEventListener("keyup", textSearch);
 </script>
