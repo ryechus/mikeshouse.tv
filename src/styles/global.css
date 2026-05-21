@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@plugin "daisyui";
 @plugin "@tailwindcss/typography";
+@plugin "daisyui";
 
 @theme {
   --font-roboto-flex: "Roboto Flex Variable", sans-serif;

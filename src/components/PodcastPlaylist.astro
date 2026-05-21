@@ -37,18 +37,26 @@ const mainChannelId = "UCtogQThyg2l30nS_TMUNDpQ";
 const isShow = (item: any) => {
   return item.snippet.channelId === mainChannelId;
 };
+
+const checkBoxClasses = "mr-1 checkbox checkbox-neutral checkbox-xs";
 ---
 
 <div class="px-4.25 sm:px-10">
   <div class="mb-1 sm:px-10 lg:px-1 text-left flex flex-row">
     <!-- <FilterIcon /> -->
     <p class="ml-1 text-lg justify-after videoFilters">
-      <input id={showsCheckboxId} type="checkbox" checked="checked" /><span
-        >shows</span
-      >
-      <input id={vodsCheckboxId} type="checkbox" checked="checked" /><span
-        >vods</span
-      >
+      <input
+        id={showsCheckboxId}
+        class={checkBoxClasses}
+        type="checkbox"
+        checked="checked"
+      /><span>shows</span>
+      <input
+        id={vodsCheckboxId}
+        class={checkBoxClasses}
+        type="checkbox"
+        checked="checked"
+      /><span>vods</span>
     </p>
   </div>
   <div class="font-roboto-flex font-semibold flex flex-row flex-wrap">
@@ -84,8 +92,8 @@ const isShow = (item: any) => {
   }
 
   .videoFilters input {
-    @apply mr-1;
-    @apply checkbox checkbox-xs checkbox-accent;
+    /* @apply mr-1; */
+    /* @apply checkbox checkbox-xs; */
   }
 </style>
 
