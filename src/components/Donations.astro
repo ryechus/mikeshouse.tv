@@ -1,5 +1,8 @@
 ---
 import TwitchGlitch from "@images/glitch_flat_white.png";
+import SquareLogo from "@images/Square_Logo_2025_Black.svg";
+import GooglePayLogo from "@images/google-pay-mark_800.svg";
+import ApplePayLogo from "@images/Apple_Pay_Mark_RGB_041619.svg";
 import { backendUrl, siteUrl } from "@config";
 const prepopValues = [
   {
@@ -60,7 +63,6 @@ const implicitGrant = `https://id.twitch.tv/oauth2/authorize?client_id=${twitchC
       <div
         class="flex items-center rounded-md bg-white outline-1 -outline-offset-1 outline-black outline-3 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600 w-3/4 mx-2 sm:mx-auto text-sm my-2 pl-3 mx-auto font-roboto-flex"
       >
-        <!-- <div class="text-gray-500 select-none">name:</div> -->
         <input
           readonly
           id="userName"
@@ -73,11 +75,10 @@ const implicitGrant = `https://id.twitch.tv/oauth2/authorize?client_id=${twitchC
       <div
         class="flex items-center rounded-md bg-white outline-1 -outline-offset-1 outline-black outline-3 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600 w-3/4 mx-2 sm:mx-auto text-sm my-2 pl-3 mx-auto font-roboto-flex mt-5"
       >
-        <!-- <div class="text-gray-500 select-none">message:</div> -->
         <textarea
           id="tipMessage"
           name="tipMessage"
-          placeholder="enter a message"
+          placeholder="enter a message - $2+ triggers TTS"
           maxlength="255"
           class="w-full p-4 py-3 pl-1 placeholder:text-gray-400 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none text-left resize-none"
         ></textarea>
@@ -100,12 +101,25 @@ const implicitGrant = `https://id.twitch.tv/oauth2/authorize?client_id=${twitchC
     <div class="w-full">
       <button
         id="checkoutBtn"
-        class="uppercase text-xl enabled:cursor-pointer bg-black text-white p-4 py-3 rounded-md disabled:bg-gray-100 enabled:hover:text-gray-100 enabled:active:text-gray-200 hover:bg-gray-900 active:bg-gray-700"
+        class="uppercase text-lg enabled:cursor-pointer bg-black text-white p-4 py-3 rounded-md disabled:bg-gray-100 enabled:hover:text-gray-100 enabled:active:text-gray-200 hover:bg-gray-900 active:bg-gray-700"
         disabled
       >
         submit
       </button>
 
+      <div class="font-roboto-flex text-xs mt-5">
+        <div>
+          <div class="flex flex-row justify-center">
+            <img class="w-10 mx-2" src={ApplePayLogo.src} />
+            <img class="w-17 -mx-3" src={GooglePayLogo.src} />
+          </div>
+          <p class="-mt-1">all major credit cards</p>
+          <p class="mt-3">
+            <span>Secure payment by</span>
+            <img class="w-16 mx-auto opacity-75" src={SquareLogo.src} />
+          </p>
+        </div>
+      </div>
       <p class="text-xs font-roboto-flex pt-5">All tips are non-refundable.</p>
     </div>
   </div>
@@ -116,7 +130,6 @@ const implicitGrant = `https://id.twitch.tv/oauth2/authorize?client_id=${twitchC
   let amount = 500;
   let userEmail = "";
   let userDisplayName = "";
-  let userTipMessage = "";
 
   function setAmount(amount) {
     const userInput = document.getElementById("userAmount");
