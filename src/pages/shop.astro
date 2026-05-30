@@ -1,24 +1,59 @@
 ---
 import MikesHouseV2 from "../layouts/MikesHouseV2.astro";
-import BlackBarShirt from "../images/mikes_house_black_bar.png";
+import BlackBarShirt from "@images/product photos/black bar.png";
+import OnlineAftersShirt from "@images/product photos/online afters.png";
+import MorseCodeShirt from "@images/product photos/morse code 1.png";
+import PorscheShirt from "@images/product photos/porsche.png";
 
 const price = 28;
+
+const products = [
+  {
+    image: BlackBarShirt.src,
+    name: "OG Black Bar Tee",
+    price: "28",
+  },
+  {
+    image: OnlineAftersShirt.src,
+    name: "Online Afters Tee",
+    price: "32",
+  },
+  {
+    image: MorseCodeShirt.src,
+    name: "Mike's House Morse Code Tee",
+    price: "32",
+  },
+
+  {
+    image: PorscheShirt.src,
+    name: "Mike's House Porsche Tee",
+    price: "32",
+  },
+];
 ---
 
 <MikesHouseV2
   title="Shop"
   description="Shop for official Mike's House merch, apparel, and other goods."
 >
-  <div
-    class="pt-10 sm:pt-0 sm:max-w-3/4 md:max-w-11/16 lg:max-w-39/64 xl:max-w-43/64 2xl:max-w-38/64 mx-auto"
-  >
-    <a target="blank" href="https://square.link/u/SBtk0Zcy">
-      <img class="xl:max-w-13/16 mx-auto" src={BlackBarShirt.src} />
-    </a>
-  </div>
-  <div class="text-center">
-    <p class="text-xl">
-      <a target="blank" href="https://square.link/u/SBtk0Zcy">${price}</a>
-    </p>
+  <div class="w-3/4 mx-auto">
+    <div class="flex flex-row justify-around items-center flex-wrap">
+      {
+        products.map((product) => (
+          <div class="shrink-0 w-full md:w-1/3">
+            <img
+              class="h-[245px] md:h-[265px] w-400 object-cover"
+              src={product.image}
+              alt={product.name}
+            />
+            <p class="text-xl">
+              {/* <a target="blank" href="https://square.link/u/SBtk0Zcy"> */}
+              {/* <span>${product.price}</span> */}
+              {/* </a> */}
+            </p>
+          </div>
+        ))
+      }
+    </div>
   </div>
 </MikesHouseV2>
