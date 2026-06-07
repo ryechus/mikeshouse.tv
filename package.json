@@ -22,7 +22,7 @@
     "@fontsource/rubik-spray-paint": "^5.2.5",
     "@fontsource/space-mono": "^5.1.1",
     "@tailwindcss/vite": "^4.2.3",
-    "astro": "6.0.4",
+    "astro": "6.3.1",
     "astrojs-mixpanel": "^1.0.3",
     "install": "^0.13.0",
     "moment": "^2.30.1",

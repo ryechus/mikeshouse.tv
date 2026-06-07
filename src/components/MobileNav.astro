@@ -1,0 +1,72 @@
+---
+import MenuIcon from "@images/icons/bars-solid-full.svg";
+import CloseMenuIcon from "@images/icons/x-solid-full.svg";
+
+import { Links as navLinks } from "@data/pages";
+
+const iconOpenId = "mobile-menu-icon-open";
+const iconCloseId = "mobile-menu-icon-close";
+const menuId = "mobile-menu";
+---
+
+<div class="sm:hidden absolute w-full pb-20 z-3">
+  <MenuIcon
+    width={40}
+    height={40}
+    stroke="black"
+    stroke-width={1}
+    id={iconOpenId}
+    class="absolute left-7 top-6.75"
+  />
+  <CloseMenuIcon
+    width={35}
+    height={35}
+    stroke="black"
+    stroke-width={1}
+    id={iconCloseId}
+    class="hidden absolute left-8 top-7.75"
+  />
+  <div
+    id={menuId}
+    class="hidden mt-23 border-y-1 border-black border-gray-200 bg-white py-5 pb-8"
+  >
+    <nav
+      class="flex flex-col justify-center text-3xl w-1/2 mx-auto text-center bg-white"
+    >
+      {
+        navLinks.map((link) => (
+          <span>
+            <a href={link.href}>{link.text}</a>
+          </span>
+        ))
+      }
+    </nav>
+  </div>
+</div>
+
+<script define:vars={{ iconOpenId, iconCloseId, menuId }}>
+  const menuOpenIcon = document.getElementById(iconOpenId);
+  const menuCloseIcon = document.getElementById(iconCloseId);
+  const menu = document.getElementById(menuId);
+
+  const toggleMenu = (state) => {
+    return (e) => {
+      const stateLower = state.toLowerCase();
+      if (stateLower === "close") {
+        menu.classList.add("hidden");
+        menuCloseIcon.classList.add("hidden");
+        menuOpenIcon.classList.remove("hidden");
+      } else if (stateLower === "open") {
+        menu.classList.remove("hidden");
+        menuCloseIcon.classList.remove("hidden");
+        menuOpenIcon.classList.add("hidden");
+      }
+      e.preventDefault();
+    };
+  };
+
+  menuOpenIcon.addEventListener("click", toggleMenu("open"));
+  menuCloseIcon.addEventListener("click", toggleMenu("close"));
+  menuOpenIcon.addEventListener("touchstart", toggleMenu("open"));
+  menuCloseIcon.addEventListener("touchstart", toggleMenu("close"));
+</script>
