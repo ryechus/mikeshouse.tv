@@ -1,0 +1,44 @@
+---
+import MikesHouseV2 from "@layouts/MikesHouseV2.astro";
+
+import { products } from "@data/products";
+
+export function getStaticPaths() {
+  return products.map((data) => {
+    const param = {
+      params: {
+        slug: data.slug.toLowerCase().replace(" ", "-"),
+        photo: data.image,
+      },
+      props: {
+        photo: data.image,
+        name: data.name,
+        price: data.price,
+        description: data.description,
+        available: data.available,
+        product: data,
+      },
+    };
+    return param;
+  });
+}
+
+const { slug } = Astro.params;
+const { product } = Astro.props;
+---
+
+<MikesHouseV2 title={slug} description="">
+  <div class="font-roboto-flex uppercase font-bold -z-10">
+    <img class="-mt-15 -mb-10 sm:-my-25 sm:w-2/3 mx-auto" src={product.image} />
+    {
+      product.available && (
+        <a href={product.purchaseLink}>
+          <p>{product.name}</p>
+          <p>${product.price}</p>
+          <p>{product.description}</p>
+        </a>
+      )
+    }
+    {!product.available && <p class="font-roboto-flex 2xl">sold out</p>}
+  </div>
+</MikesHouseV2>
