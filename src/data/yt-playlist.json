@@ -4,6 +4,57 @@
   "items": [
     {
       "kind": "youtube#playlistItem",
+      "etag": "-JmSKrsrJZP6xZ0NITTyXU0Wei8",
+      "id": "UExmUjNpUzNTenRWa1RIX3NFR0dCT0ZYSzRTWUJKWDZqRC5CQkEwRDA0MDkwNUM2MDY1",
+      "snippet": {
+        "publishedAt": "2026-06-08T04:16:45Z",
+        "channelId": "UCtogQThyg2l30nS_TMUNDpQ",
+        "title": "Bass House & Tech House Mix | Mike's House S2 EP3",
+        "description": "Streamed on June 6, 2026\n\n0:00 Intro/Mikezilla\n24:22 BA Vibe\n54:53 Mikezilla\n1:30:34 S.T.A.N.\n\nFollow on twitch https://twitch.tv/thankyoumikezilla\n\nBA Vibe - @B.A.VibeMusic \nS.T.A.N. - https://www.instagram.com/simontakesanap/\n\nJoin the discord https://discord.gg/E5GP7Ejqf2\n\nLike, comment, and subscribe!\n\n#basshouse #techhouse #work #study #backgroundmusic #dance #afterhours",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/oaR391nqp50/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/oaR391nqp50/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/oaR391nqp50/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/oaR391nqp50/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/oaR391nqp50/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Mikezilla",
+        "playlistId": "PLfR3iS3SztVkTH_sEGGBOFXK4SYBJX6jD",
+        "position": 0,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "oaR391nqp50"
+        },
+        "videoOwnerChannelTitle": "Mikezilla",
+        "videoOwnerChannelId": "UCtogQThyg2l30nS_TMUNDpQ"
+      },
+      "contentDetails": {
+        "videoId": "oaR391nqp50",
+        "videoPublishedAt": "2026-06-08T18:10:25Z"
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
       "etag": "wA4EPg9eOYeuqLyRn5gfvAsUk18",
       "id": "UExmUjNpUzNTenRWa1RIX3NFR0dCT0ZYSzRTWUJKWDZqRC4xMzgwMzBERjQ4NjEzNUE5",
       "snippet": {
