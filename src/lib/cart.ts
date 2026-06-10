@@ -17,6 +17,10 @@ export const addToCart = (e: any): void => {
   const itemId = e.target.dataset.id;
   console.log(e.target.dataset.id);
   let cartCookie = getCookie(cartCookieName);
+
+  const cartItemsElem = document.getElementById("numCartItems");
+
+  let numItems = 0;
   if (cartCookie) {
     const cartJSON: CartCookie = JSON.parse(cartCookie);
     const items = cartJSON.items;
@@ -26,7 +30,15 @@ export const addToCart = (e: any): void => {
       items[itemId].quantity = 1;
     }
 
-    document.cookie = `${cartCookieName}=${JSON.stringify(cartJSON)};`;
+    document.cookie = `${cartCookieName}=${JSON.stringify(cartJSON)}; path=/`;
+
+    for (const [key, value] of Object.entries(cartJSON.items)) {
+      numItems += value.quantity;
+    }
+
+    if (cartItemsElem) {
+      cartItemsElem.innerHTML = `${numItems}`;
+    }
     console.log(cartJSON);
   } else {
     const newCart: CartCookie = {
@@ -37,9 +49,28 @@ export const addToCart = (e: any): void => {
       },
     };
 
-    document.cookie = `${cartCookieName}=${JSON.stringify(newCart)};`;
+    numItems += 1;
+
+    document.cookie = `${cartCookieName}=${JSON.stringify(newCart)}; path=/`;
   }
+
+  if (cartItemsElem) {
+    cartItemsElem.innerHTML = `${numItems}`;
+  }
+
+  const cartDiv = document.getElementById("cartDiv");
+  cartDiv?.classList.remove("hidden");
 };
+
+export function showCart() {
+  const cartDiv = document.getElementById("cartDiv");
+
+  let cartCookie = getCookie(cartCookieName);
+
+  if (cartCookie) {
+    cartDiv?.classList.remove("hidden");
+  }
+}
 
 interface CartItems {
   quantity: number;

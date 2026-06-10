@@ -1,0 +1,41 @@
+---
+import ShoppingCartIcon from "@images/icons/shopping_cart.svg";
+
+interface Props {
+  cartIconSize?: number;
+}
+
+const { cartIconSize = 35 } = Astro.props;
+---
+
+<div id="cartDiv">
+  <span
+    id="numCartItems"
+    class="float-left font-roboto-flex font-bold absolute text-xs top-2 -right-3"
+  ></span>
+  <ShoppingCartIcon width={cartIconSize} height={cartIconSize} />
+</div>
+
+<script>
+  import { getCookie, cartCookieName, type CartCookie } from "@lib/cart";
+
+  const cartCookie = getCookie(cartCookieName);
+  const cartItemsElem = document.getElementById("numCartItems");
+  const cartDiv = document.getElementById("cartDiv");
+  console.log(cartCookieName);
+  if (cartCookie) {
+    const cartCookieJSON: CartCookie = JSON.parse(cartCookie);
+    let numItems = 0;
+    for (const [key, value] of Object.entries(cartCookieJSON.items)) {
+      numItems += value.quantity;
+    }
+
+    if (cartItemsElem && numItems > 0) {
+      cartItemsElem.innerHTML = `${numItems}`;
+      cartDiv?.classList.remove("hidden");
+    }
+    // console.log(cartCookie);
+  } else {
+    console.log("cookie not present");
+  }
+</script>
