@@ -5,6 +5,7 @@ import MorseCodeShirt from "@images/product photos/morse code 1.png";
 import PorscheShirt from "@images/product photos/porsche.png";
 
 interface Product {
+  id?: string;
   image: string;
   name: string;
   price: string;
@@ -23,6 +24,7 @@ export const products: Product[] = [
     slug: "black-bar-tee",
     available: true,
     purchaseLink: "https://square.link/u/SBtk0Zcy",
+    id: "1",
   },
   {
     image: OnlineAftersShirt.src,

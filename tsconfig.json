@@ -7,7 +7,7 @@
       "@data/*": ["./src/data/*"],
       "@layouts/*": ["./src/layouts/*"],
       "@styles/*": ["./src/styles/*"],
-      "@utils/*": ["./src/utils/*"],
+      "@lib/*": ["./src/lib/*"],
       "@images/*": ["./src/images/*"],
       "@config": ["./src/config.ts"],
       "@svelte": ["./src/svelte/src/*"],

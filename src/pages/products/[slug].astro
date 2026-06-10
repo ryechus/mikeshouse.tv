@@ -23,6 +23,8 @@ export function getStaticPaths() {
   });
 }
 
+const cartBtnId = "cartButton";
+
 const { slug } = Astro.params;
 const { product } = Astro.props;
 ---
@@ -42,7 +44,13 @@ const { product } = Astro.props;
             <p class="2xl">sold out</p>
           ) : (
             <p>
-              <a href={product.purchaseLink}>buy</a>
+              <button
+                class="btn btn-neutral text-white"
+                data-id={product.id}
+                id={cartBtnId}
+              >
+                add to cart
+              </button>
             </p>
           )
         }
@@ -50,3 +58,18 @@ const { product } = Astro.props;
     </div>
   </div>
 </MikesHouseV2>
+
+<script>
+  import { getCookie, cartCookieName, addToCart } from "@lib/cart";
+
+  const btnElem = document.getElementById("cartButton");
+
+  const cartCookie = getCookie(cartCookieName);
+  if (cartCookie) {
+    console.log(cartCookie);
+  } else {
+    console.log("cookie not present");
+  }
+
+  btnElem?.addEventListener("click", addToCart);
+</script>
