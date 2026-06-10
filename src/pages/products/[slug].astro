@@ -28,17 +28,25 @@ const { product } = Astro.props;
 ---
 
 <MikesHouseV2 title={slug} description="">
-  <div class="font-roboto-flex uppercase font-bold overflow-clip relative">
+  <div
+    class="font-roboto-flex uppercase font-bold overflow-clip relative leading-5 mt-0 sm:mt-2"
+  >
     <img class="w-7/8 sm:w-2/3 mx-auto -z-10" src={product.image} />
-    {
-      product.available && (
-        <a href={product.purchaseLink}>
-          <p>{product.name}</p>
-          <p>${product.price}</p>
-          <p>{product.description}</p>
-        </a>
-      )
-    }
-    {!product.available && <p class="font-roboto-flex 2xl">sold out</p>}
+    <div>
+      <p>{product.name}</p>
+      <p>${product.price}</p>
+      <p class="text-xs">{product.description}</p>
+      <div class="mt-2">
+        {
+          !product.available ? (
+            <p class="2xl">sold out</p>
+          ) : (
+            <p>
+              <a href={product.purchaseLink}>buy</a>
+            </p>
+          )
+        }
+      </div>
+    </div>
   </div>
 </MikesHouseV2>
