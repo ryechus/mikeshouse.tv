@@ -29,10 +29,7 @@ const { product } = Astro.props;
 
 <MikesHouseV2 title={slug} description="">
   <div class="font-roboto-flex uppercase font-bold overflow-clip relative">
-    <img
-      class="-mt-15 -mb-10 sm:-my-25 sm:w-2/3 mx-auto -z-10"
-      src={product.image}
-    />
+    <img class="w-7/8 sm:w-2/3 mx-auto -z-10" src={product.image} />
     {
       product.available && (
         <a href={product.purchaseLink}>
