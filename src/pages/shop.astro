@@ -9,22 +9,34 @@ import { products } from "@data/products";
   description="Shop for official Mike's House merch, apparel, and other goods."
 >
   <div
-    class="flex flex-row justify-around items-center flex-wrap max-w-3/4 md:max-w-9/16 lg:max-w-13/16 mx-auto"
+    class="flex flex-row justify-center items-center flex-wrap mx-auto mt-0 sm:mt-2 xl:mt-8 p-7 xl:p-0"
   >
     {
       products.map((product) => (
-        <div class="shrink-0 mb-5 w-full lg:basis-1/3 lg:max-w-3/4 productCard relative">
+        <div class="shrink-0 mb-5 w-full md:basis-1/2 xl:basis-3/8 productCard relative">
           <div
             class={`absolute w-full h-full z-2 flex flex-col justify-end ${!product.available ? "" : "hidden"}`}
+          ></div>
+          <a
+            class={!product.available ? "no-underline" : ""}
+            href={`/products/${product.slug}`}
           >
-            <p class="text-red-200 text-4xl font-roboto-flex pb-15">sold out</p>
-          </div>
-          <a href={`/products/${product.slug}`}>
             <img
               class={`w-full ${!product.available ? "grayscale-100" : ""}`}
               src={product.image}
               alt={product.name}
             />
+            <div class="font-roboto-flex uppercase font-bold text-md leading-5">
+              <p>
+                <span>{product.name}</span>
+                <br />
+                {product.available ? (
+                  `$${product.price}`
+                ) : (
+                  <span class="text-red-400">sold out</span>
+                )}
+              </p>
+            </div>
           </a>
         </div>
       ))
