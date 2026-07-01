@@ -7,6 +7,7 @@ let tempCategoryId = "IAOPOEWLDE2WVM6OBHC5TD2K";
 if (import.meta.env.MODE === "production") {
   tempBackendUrl = "https://api.mikeshouse.tv";
   tempSiteUrl = "https://mikeshouse.tv";
+  tempCategoryId = "STLTFX7BSIUQJOFYXEDHW5MA";
 }
 
 export const backendUrl = tempBackendUrl;

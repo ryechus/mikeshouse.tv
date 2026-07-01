@@ -15,3 +15,20 @@ const { cartIconSize = 35 } = Astro.props;
   ></span>
   <ShoppingCartIcon width={cartIconSize} height={cartIconSize} />
 </div>
+
+<script>
+  import { getCartFromRemote } from "@lib/cart";
+  const cartItemsElem = document.getElementById("numCartItems");
+  const cartDiv = document.getElementById("cartDiv");
+  const cart = await getCartFromRemote();
+  let numItems = 0;
+
+  if (cart) {
+    numItems = cart.items.length;
+  }
+
+  if (cartItemsElem && numItems > 0) {
+    cartItemsElem.innerHTML = `${numItems}`;
+    cartDiv?.classList.remove("hidden");
+  }
+</script>

@@ -24,14 +24,12 @@ export const getCartUUIDFromCookie = (): string => {
   return "";
 };
 
-export const getCartFromRemote = async (
-  cartUID: string,
-): Promise<void | Cart> => {
+export const getCartFromRemote = async (): Promise<void | Cart> => {
+  const cartUID = await getCurrentCart();
   try {
     const cartCached = await fetch(`http://localhost:8000/cart/${cartUID}`);
     const response = await cartCached.json();
     try {
-      console.log(typeof response);
       await CartSchema.parseAsync(response);
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -45,8 +43,7 @@ export const getCartFromRemote = async (
   }
 };
 
-export const addToCart = async (e: any): Promise<void> => {
-  console.log("existing cart", getCartUUIDFromCookie());
+export const getCurrentCart = async () => {
   let existingCartUID = getCartUUIDFromCookie();
   if (!existingCartUID) {
     const cartUUID: string = crypto.randomUUID();
@@ -54,6 +51,11 @@ export const addToCart = async (e: any): Promise<void> => {
 
     document.cookie = `${cartCookieName}=${cartUUID}; path=/`;
   }
+  return existingCartUID;
+};
+
+export const addToCart = async (e: any): Promise<void> => {
+  const existingCartUID = await getCurrentCart();
 
   const body = {
     uid: e.target.dataset.id,

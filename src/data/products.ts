@@ -52,7 +52,7 @@ const getProductsForUI = async () => {
         });
         if (!(obj.id in productsMap)) {
           productsMap.push({
-            id: obj.id,
+            id: obj.item_data.variations[0].id,
             image: imageUrl,
             name: obj.item_data.name,
             slug: slugify(obj.item_data.name),
