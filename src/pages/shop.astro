@@ -16,7 +16,7 @@ import { products } from "@data/products";
         <div class="shrink-0 mb-5 w-full md:basis-1/2 xl:basis-3/8 productCard relative">
           <div
             class={`absolute w-full h-full z-2 flex flex-col justify-end ${!product.available ? "" : "hidden"}`}
-          ></div>
+          />
           <a
             class={!product.available ? "no-underline" : ""}
             href={`/products/${product.slug}`}
@@ -43,5 +43,3 @@ import { products } from "@data/products";
     }
   </div>
 </MikesHouseV2>
-
-<script></script>

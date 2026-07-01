@@ -60,16 +60,9 @@ const { product } = Astro.props;
 </MikesHouseV2>
 
 <script>
-  import { getCookie, cartCookieName, addToCart } from "@lib/cart";
+  import { addToCart } from "@lib/cart";
 
   const btnElem = document.getElementById("cartButton");
-
-  const cartCookie = getCookie(cartCookieName);
-  if (cartCookie) {
-    console.log(cartCookie);
-  } else {
-    console.log("cookie not present");
-  }
 
   btnElem?.addEventListener("click", addToCart);
 </script>

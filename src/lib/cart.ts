@@ -1,3 +1,6 @@
+import { CartSchema, type Cart } from "./types";
+import * as z from "zod/v4";
+
 export function getCookie(name: string): string | null {
   const nameEQ = name + "=";
   const cookies = document.cookie.split(";");
@@ -11,55 +14,64 @@ export function getCookie(name: string): string | null {
   return null;
 }
 
-export const cartCookieName = "cart";
+export const cartCookieName = "cartUID";
 
-export const addToCart = (e: any): void => {
-  const itemId = e.target.dataset.id;
-  console.log(e.target.dataset.id);
+export const getCartUUIDFromCookie = (): string => {
   let cartCookie = getCookie(cartCookieName);
-
-  const cartItemsElem = document.getElementById("numCartItems");
-
-  let numItems = 0;
   if (cartCookie) {
-    const cartJSON: CartCookie = JSON.parse(cartCookie);
-    const items = cartJSON.items;
-    if (itemId in items) {
-      items[itemId].quantity += 1;
-    } else {
-      items[itemId].quantity = 1;
-    }
+    return cartCookie;
+  }
+  return "";
+};
 
-    document.cookie = `${cartCookieName}=${JSON.stringify(cartJSON)}; path=/`;
-
-    for (const [key, value] of Object.entries(cartJSON.items)) {
-      numItems += value.quantity;
+export const getCartFromRemote = async (
+  cartUID: string,
+): Promise<void | Cart> => {
+  try {
+    const cartCached = await fetch(`http://localhost:8000/cart/${cartUID}`);
+    const response = await cartCached.json();
+    try {
+      console.log(typeof response);
+      await CartSchema.parseAsync(response);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        console.log(error.issues);
+      }
+      throw error;
     }
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-    if (cartItemsElem) {
-      cartItemsElem.innerHTML = `${numItems}`;
-    }
-    console.log(cartJSON);
-  } else {
-    const newCart: CartCookie = {
-      items: {
-        [itemId]: {
-          quantity: 1,
-        },
+export const addToCart = async (e: any): Promise<void> => {
+  console.log("existing cart", getCartUUIDFromCookie());
+  let existingCartUID = getCartUUIDFromCookie();
+  if (!existingCartUID) {
+    const cartUUID: string = crypto.randomUUID();
+    existingCartUID = cartUUID;
+
+    document.cookie = `${cartCookieName}=${cartUUID}; path=/`;
+  }
+
+  const body = {
+    uid: e.target.dataset.id,
+    quantity: 1,
+  };
+  const req = await fetch(
+    `http://localhost:8000/cart/${existingCartUID}/item/add`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    };
+      body: JSON.stringify(body),
+    },
+  );
+  const resp = await req.json();
 
-    numItems += 1;
-
-    document.cookie = `${cartCookieName}=${JSON.stringify(newCart)}; path=/`;
-  }
-
-  if (cartItemsElem) {
-    cartItemsElem.innerHTML = `${numItems}`;
-  }
-
-  const cartDiv = document.getElementById("cartDiv");
-  cartDiv?.classList.remove("hidden");
+  console.log(resp);
 };
 
 export function showCart() {
@@ -73,6 +85,7 @@ export function showCart() {
 }
 
 interface CartItems {
+  itemUUID: string;
   quantity: number;
 }
 
