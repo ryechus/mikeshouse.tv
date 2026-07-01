@@ -1,3 +1,4 @@
+import { backendUrl } from '@config';
 import { CartSchema, type Cart } from "./types";
 import * as z from "zod/v4";
 
@@ -27,7 +28,7 @@ export const getCartUUIDFromCookie = (): string => {
 export const getCartFromRemote = async (): Promise<void | Cart> => {
   const cartUID = await getCurrentCart();
   try {
-    const cartCached = await fetch(`http://localhost:8000/cart/${cartUID}`);
+    const cartCached = await fetch(`${backendUrl}/cart/${cartUID}`);
     const response = await cartCached.json();
     try {
       await CartSchema.parseAsync(response);
@@ -62,7 +63,7 @@ export const addToCart = async (e: any): Promise<void> => {
     quantity: 1,
   };
   const req = await fetch(
-    `http://localhost:8000/cart/${existingCartUID}/item/add`,
+    `${backendUrl}/cart/${existingCartUID}/item/add`,
     {
       method: "POST",
       headers: {
