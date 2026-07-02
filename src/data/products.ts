@@ -14,6 +14,7 @@ interface Product {
   description?: string;
   available?: boolean;
   purchaseLink?: string;
+  variations?: Array<object>;
 }
 
 const getProductsFromAPI = async () => {
@@ -61,6 +62,7 @@ const getProductsForUI = async () => {
             price:
               obj.item_data.variations[0].item_variation_data.price_money
                 .amount / 100,
+            variations: obj.item_data.variations,
           });
         }
       }

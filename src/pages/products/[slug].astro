@@ -55,6 +55,18 @@ const { product } = Astro.props;
           )
         }
       </div>
+      <div class="w-7/8 sm:w-2/3 mx-auto">
+        <fieldset class="fieldset w-full">
+          <legend class="fieldset-legend">Size</legend>
+          <select class="select w-1/4">
+            {
+              product.variations?.map((obj) => (
+                <option>{obj.item_variation_data.name}</option>
+              ))
+            }
+          </select>
+        </fieldset>
+      </div>
     </div>
   </div>
 </MikesHouseV2>
