@@ -1,8 +1,8 @@
 <script lang="ts">
   import { backendUrl } from "@config";
-  import { slugify } from "@data/products";
   import { cartState, addToCart, addToCartV2, cartState2 } from "@lib/cart";
   import type { CartItem } from "@lib/types";
+  import { slugify } from "@lib/utils";
   import { derived } from "svelte/store";
 
   const cartQuantity = derived(cartState2, ($cartState2) =>
@@ -20,7 +20,9 @@
     await addToCartV2(item, val);
   }
 
-  const items = derived(cartState2, ($cartState2) => $cartState2.items);
+  const items = derived(cartState2, ($cartState2) =>
+    $cartState2.items.filter((i) => i.quantity > 0),
+  );
 </script>
 
 <div id="flex flex-col">

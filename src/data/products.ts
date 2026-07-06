@@ -4,6 +4,7 @@ import OnlineAftersShirt from "@images/product photos/online afters.png";
 import MorseCodeShirt from "@images/product photos/morse code 1.png";
 import PorscheShirt from "@images/product photos/porsche.png";
 import { apparelCategoryId, backendUrl } from "@config";
+import { slugify } from "@lib/utils";
 
 interface Product {
   id?: string;
@@ -23,19 +24,6 @@ const getProductsFromAPI = async () => {
   );
 
   return await req.json();
-};
-
-export const slugify = (text: string): string => {
-  return text
-    .toString()
-    .normalize("NFD") // Split accented letters from accents
-    .replace(/[\u0300-\u036f]/g, "") // Remove accents
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9 -]/g, "") // Remove non-alphanumeric characters (except spaces and hyphens)
-    .replace(/\s+/g, "-") // Replace spaces with hyphens
-    .replace(/-+/g, "-") // Replace multiple hyphens with single hyphen
-    .replace(/^-|-$/g, ""); // Remove leading/trailing hyphens
 };
 
 const getProductsForUI = async () => {
