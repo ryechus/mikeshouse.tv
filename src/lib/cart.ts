@@ -114,6 +114,7 @@ export const addToCartV2 = async (
     body: JSON.stringify(body),
   });
   const resp = await req.json();
+  // await getCartFromRemote();
   cartState2.set(resp);
 };
 
@@ -135,5 +136,3 @@ interface CartItems {
 export interface CartCookie {
   items: { [key: string]: CartItems };
 }
-
-await getCartFromRemote();
