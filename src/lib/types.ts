@@ -11,8 +11,9 @@ const CartItemSchema = z.object({
 });
 
 export const CartSchema = z.object({
-  uid: z.string(),
-  items: z.array(CartItemSchema),
+  uid: z.string().default(""),
+  items: z.array(CartItemSchema).default([]),
 });
 
 export type Cart = z.infer<typeof CartSchema>;
+export type CartItem = z.infer<typeof CartItemSchema>;

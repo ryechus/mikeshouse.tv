@@ -14,7 +14,7 @@ import Socials from "@components/Socials.astro";
 
 import { Links as navLinks } from "@data/pages";
 import MobileNav from "@components/MobileNav.astro";
-import ShoppingCart from "@components/ShoppingCart.astro";
+import ShoppingCart from "@components/svelte/ShoppingCart.svelte";
 
 interface Props {
   title: string;
@@ -80,7 +80,7 @@ const fullTitle = title !== "" ? `${siteTitle} - ${title}` : siteTitle;
             )
           }
           <div class="absolute right-10 top-11">
-            {!hideHeader && <ShoppingCart />}
+            {!hideHeader && <ShoppingCart client:only />}
           </div>
         </div>
 

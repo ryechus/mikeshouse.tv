@@ -1,52 +1,53 @@
 <script lang="ts">
   import { backendUrl } from "@config";
   import { slugify } from "@data/products";
-  import { cartState } from "@lib/cart";
+  import { cartState, addToCart, addToCartV2, cartState2 } from "@lib/cart";
+  import type { CartItem } from "@lib/types";
+  import { derived } from "svelte/store";
 
-  function goToCheckout() {
-    console.log(cartState.get()?.uid);
+  const cartQuantity = derived(cartState2, ($cartState2) =>
+    $cartState2.items.reduce((sum, item) => sum + item.quantity, 0),
+  );
+
+  const cartTotal = derived(cartState2, ($cartState2) =>
+    $cartState2.items.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0,
+    ),
+  );
+
+  async function updateQuantity(item: CartItem, val: number): Promise<void> {
+    await addToCartV2(item, val);
   }
 
-  const cartTotal = (): number => {
-    let total = 0;
-    const cart = cartState.get();
-
-    cart?.items.map((item) => {
-      total += item.price * item.quantity;
-    });
-    return total;
-  };
-
-  const cartQuantity = (): number => {
-    let total = 0;
-    const cart = cartState.get();
-
-    cart?.items.map((item) => {
-      total += item.quantity;
-    });
-    return total;
-  };
+  const items = derived(cartState2, ($cartState2) => $cartState2.items);
 </script>
 
 <div id="flex flex-col">
   <div class="max-w-screen w-150 px-10 text-left font-roboto-flex">
-    <h1 class="text-xl font-bold">Cart - {cartQuantity()} items</h1>
-    {#each $cartState?.items as item}
+    <h1 class="text-xl font-bold">Cart - {$cartQuantity} items</h1>
+    {#each $items as item}
       <div class="grid grid-cols-4 items-center py-2 my-4">
         <a href={`/products/${slugify(item.name)}`}>
           <img class="float-left w-20 mr-5" src={item.thumbnailUrl} alt="" /></a
         >
         <div class="col-span-2">
           <p>{item.name}</p>
-          <p>${item.price}</p>
+          <p class="text-xs">${item.price}</p>
         </div>
-        <div class="text-right">
-          <div class="flex flex-row justify-end mb-2">
-            <button class="btn btn-xs">-</button>
+        <div class="text-right text-xs">
+          <div class="flex flex-row justify-end mb-2 items-center">
+            <button
+              class="btn btn-xs btn-neutral btn-soft"
+              on:click={async () => updateQuantity(item, -1)}>-</button
+            >
             <p class="mx-2">{item.quantity}</p>
-            <button class="btn btn-xs">+</button>
+            <button
+              class="btn btn-xs btn-neutral btn-soft"
+              on:click={async () => updateQuantity(item, 1)}>+</button
+            >
           </div>
-          <p>${item.price * item.quantity}</p>
+          <p class="text-sm">${item.price * item.quantity}</p>
         </div>
       </div>
     {/each}
@@ -56,7 +57,7 @@
         <p>Estimated Total</p>
       </div>
       <div class="text-right font-bold">
-        <p>${cartTotal()}</p>
+        <p>${$cartTotal}</p>
       </div>
       <div class="col-span-4">
         <p class="text-gray-400 italic text-right text-xs">
@@ -66,10 +67,7 @@
     </div>
     <div class="py-2">
       <form action="{backendUrl}/cart/payment-link/{$cartState?.uid}">
-        <button
-          on:click={goToCheckout}
-          class="btn btn-neutral text-white float-right">Checkout</button
-        >
+        <button class="btn btn-neutral text-white float-right">Checkout</button>
       </form>
     </div>
   </div>

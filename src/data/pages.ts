@@ -11,8 +11,4 @@ export const Links = [
     href: "/shop",
     text: "shop",
   },
-  {
-    href: "/cart",
-    text: "cart",
-  },
 ];

@@ -1,12 +1,28 @@
 import { backendUrl } from "@config";
-import { CartSchema, type Cart } from "./types";
+import { CartSchema, type Cart, type CartItem } from "./types";
 import * as z from "zod/v4";
 
 import { persistentJSON, persistentAtom } from "@nanostores/persistent";
 import { atom } from "nanostores";
+import { SvelteMap } from "svelte/reactivity";
 
-export const cartState = persistentJSON<Cart>("cart");
+export const cartState = persistentJSON<Cart>("cart", CartSchema.parse({}));
+export const cartState2 = persistentAtom<Cart>("cart2", CartSchema.parse({}), {
+  encode: JSON.stringify,
+  decode: (value: string) => {
+    try {
+      return JSON.parse(value);
+    } catch {
+      return []; // Default to empty array on parse error
+    }
+  },
+});
+
 export const cartUpdated = atom<boolean>(false);
+
+export const thisCartState = new SvelteMap();
+
+// thisCartState.set(cartState.get());
 
 export function getCookie(name: string): string | null {
   const nameEQ = name + "=";
@@ -45,6 +61,8 @@ export const getCartFromRemote = async (): Promise<void | Cart | null> => {
       throw error;
     }
     cartState.set(response);
+    cartState2.set(response);
+
     return response;
   } catch (error) {
     console.log(error);
@@ -63,14 +81,29 @@ export const getCurrentCart = async () => {
 };
 
 export const addToCart = async (e: any): Promise<void> => {
-  const existingCartUID = await getCurrentCart();
-
   const body = {
     uid: e.target.dataset.id,
     quantity: 1,
     thumbnailUrl: e.target.dataset.thumbnailUrl,
     price: e.target.dataset.price,
     name: e.target.dataset.name,
+  };
+
+  await addToCartV2(body, 1);
+};
+
+export const addToCartV2 = async (
+  item: CartItem,
+  quantity: number,
+): Promise<void> => {
+  const existingCartUID = await getCurrentCart();
+
+  const body = {
+    uid: item.uid,
+    quantity: quantity,
+    thumbnailUrl: item.thumbnailUrl,
+    price: item.price,
+    name: item.name,
   };
 
   const req = await fetch(`${backendUrl}/cart/${existingCartUID}/item/add`, {
@@ -81,6 +114,7 @@ export const addToCart = async (e: any): Promise<void> => {
     body: JSON.stringify(body),
   });
   const resp = await req.json();
+  cartState2.set(resp);
 };
 
 export function showCart() {
@@ -101,3 +135,5 @@ interface CartItems {
 export interface CartCookie {
   items: { [key: string]: CartItems };
 }
+
+await getCartFromRemote();
