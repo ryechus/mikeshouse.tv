@@ -14,7 +14,7 @@
   <span
     id="numCartItems"
     class="float-left font-roboto-flex font-bold absolute text-xs top-2 -right-3"
-    >{$cartQuantity}</span
+    >{$cartQuantity > 0 ? $cartQuantity : ""}</span
   >
   <a href="/cart">
     <img
