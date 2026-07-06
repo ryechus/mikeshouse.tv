@@ -1,0 +1,9 @@
+---
+import MikesHouseV2 from "@layouts/MikesHouseV2.astro";
+
+import Cart from "@components/svelte/Cart.svelte";
+---
+
+<MikesHouseV2 title="Current Cart" description="">
+  <Cart client:only />
+</MikesHouseV2>

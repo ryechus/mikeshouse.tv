@@ -1,17 +1,24 @@
 import { defineConfig } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
-// import mixpanel from "astrojs-mixpanel";
+import svelte from "@astrojs/svelte";
 import sitemap from "@astrojs/sitemap";
+
+import robots from "astro-robots";
 
 const serverIslandHostname =
   process.env.SERVER_ISLAND_HOSTNAME !== undefined
     ? process.env.SERVER_ISLAND_HOSTNAME
     : "";
 
+let site = "http://localhost:4321";
+if (import.meta.env.MODE === "production") {
+  site = "https://mikeshouse.tv";
+}
+
 // https://astro.build/config
 export default defineConfig({
-  site: "https://mikeshouse.tv",
+  site: site,
   //   adapter: node({
   //     mode: "standalone",
   //   }),
@@ -26,6 +33,33 @@ export default defineConfig({
   },
   integrations: [
     sitemap(),
+    svelte(),
+    robots({
+      host: "mikeshouse.tv",
+      sitemap: [`${site}/sitemap.xml`],
+      policy: [
+        {
+          userAgent: [
+            "Applebot",
+            "Googlebot",
+            "bingbot",
+            "Yandex",
+            "Yeti",
+            "Baiduspider",
+            "360Spider",
+            "*",
+          ],
+          allow: ["/"],
+          disallow: ["/cart"],
+          crawlDelay: 5,
+          cleanParam: ["sid /", "s /forum/showthread"],
+        },
+        {
+          userAgent: "BLEXBot",
+          disallow: ["/assets", "/uploades/1989-08-21/*jpg$"],
+        },
+      ],
+    }),
     // mixpanel({
     //   token: "507de4cce4c41aa7cd5639fe06b1b0cd",
     //   config: {

@@ -13,7 +13,9 @@ const { cartIconSize = 35 } = Astro.props;
     id="numCartItems"
     class="float-left font-roboto-flex font-bold absolute text-xs top-2 -right-3"
   ></span>
-  <ShoppingCartIcon width={cartIconSize} height={cartIconSize} />
+  <a href="/cart">
+    <ShoppingCartIcon width={cartIconSize} height={cartIconSize} />
+  </a>
 </div>
 
 <script>

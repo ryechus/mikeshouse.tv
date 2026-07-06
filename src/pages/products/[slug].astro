@@ -47,6 +47,9 @@ const { product } = Astro.props;
               <button
                 class="btn btn-neutral text-white"
                 data-id={product.id}
+                data-thumbnail-url={product.image}
+                data-price={product.price}
+                data-name={product.name}
                 id={cartBtnId}
               >
                 add to cart
@@ -56,16 +59,13 @@ const { product } = Astro.props;
         }
       </div>
       <div class="w-7/8 sm:w-2/3 mx-auto">
-        <fieldset class="fieldset w-full">
-          <legend class="fieldset-legend">Size</legend>
-          <select class="select w-1/4">
-            {
-              product.variations?.map((obj) => (
-                <option>{obj.item_variation_data.name}</option>
-              ))
-            }
-          </select>
-        </fieldset>
+        <!-- {
+          product.variations?.map((obj) => (
+            <button class="btn btn-outline">
+              {obj.item_variation_data.name}
+            </button>
+          ))
+        } -->
       </div>
     </div>
   </div>

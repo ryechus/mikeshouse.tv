@@ -1,6 +1,12 @@
-import { backendUrl } from '@config';
+import { backendUrl } from "@config";
 import { CartSchema, type Cart } from "./types";
 import * as z from "zod/v4";
+
+import { persistentJSON, persistentAtom } from "@nanostores/persistent";
+import { atom } from "nanostores";
+
+export const cartState = persistentJSON<Cart>("cart");
+export const cartUpdated = atom<boolean>(false);
 
 export function getCookie(name: string): string | null {
   const nameEQ = name + "=";
@@ -25,7 +31,7 @@ export const getCartUUIDFromCookie = (): string => {
   return "";
 };
 
-export const getCartFromRemote = async (): Promise<void | Cart> => {
+export const getCartFromRemote = async (): Promise<void | Cart | null> => {
   const cartUID = await getCurrentCart();
   try {
     const cartCached = await fetch(`${backendUrl}/cart/${cartUID}`);
@@ -38,6 +44,7 @@ export const getCartFromRemote = async (): Promise<void | Cart> => {
       }
       throw error;
     }
+    cartState.set(response);
     return response;
   } catch (error) {
     console.log(error);
@@ -61,20 +68,19 @@ export const addToCart = async (e: any): Promise<void> => {
   const body = {
     uid: e.target.dataset.id,
     quantity: 1,
+    thumbnailUrl: e.target.dataset.thumbnailUrl,
+    price: e.target.dataset.price,
+    name: e.target.dataset.name,
   };
-  const req = await fetch(
-    `${backendUrl}/cart/${existingCartUID}/item/add`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    },
-  );
-  const resp = await req.json();
 
-  console.log(resp);
+  const req = await fetch(`${backendUrl}/cart/${existingCartUID}/item/add`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+  const resp = await req.json();
 };
 
 export function showCart() {
