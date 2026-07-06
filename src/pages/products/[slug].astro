@@ -27,6 +27,14 @@ const cartBtnId = "cartButton";
 
 const { slug } = Astro.params;
 const { product } = Astro.props;
+
+const sizeMap: Record<string, string> = {
+  Small: "S",
+  Medium: "M",
+  Large: "L",
+  "X-Large": "XL",
+  "2X-Large": "2XL",
+};
 ---
 
 <MikesHouseV2 title={slug} description="">
@@ -38,32 +46,48 @@ const { product } = Astro.props;
       <p>{product.name}</p>
       <p>${product.price}</p>
       <p class="text-xs">{product.description}</p>
-      <div class="mt-2">
+
+      <div class="w-7/8 sm:w-2/3 mx-auto">
+        {
+          product.variations?.map((obj, idx) => (
+            <button
+              data-id={obj.id}
+              data-name={obj.item_variation_data.name}
+              class={`btn btn-neutral btn-outline sizeButtons ${idx === 0 ? "btn-active" : ""}`}
+            >
+              {sizeMap[obj.item_variation_data.name]}
+            </button>
+          ))
+        }
+      </div>
+      <div class="my-4">
+        <button id="qtySelectorDown" class="btn btn-square btn-sm">-</button>
+        <span id="qtySelectorValue" class="px-4">1</span>
+        <button id="qtySelectorUp" class="btn btn-square btn-sm">+</button>
+      </div>
+      <div class="mt-2 w-1/2 max-w-[200px] mx-auto">
         {
           !product.available ? (
             <p class="2xl">sold out</p>
           ) : (
             <button
-              class="btn btn-neutral text-white"
+              class="btn btn-neutral text-white btn-block"
               data-id={product.id}
               data-thumbnail-url={product.image}
               data-price={product.price}
               data-name={product.name}
+              data-quantity={1}
+              data-variation-name={
+                product.variations
+                  ? product.variations[0].item_variation_data.name
+                  : ""
+              }
               id={cartBtnId}
             >
               add to cart
             </button>
           )
         }
-      </div>
-      <div class="w-7/8 sm:w-2/3 mx-auto">
-        <!-- {
-          product.variations?.map((obj) => (
-            <button class="btn btn-outline">
-              {obj.item_variation_data.name}
-            </button>
-          ))
-        } -->
       </div>
     </div>
   </div>
@@ -74,5 +98,63 @@ const { product } = Astro.props;
 
   const btnElem = document.getElementById("cartButton");
 
+  const toggleActiveSize = (e: any) => {
+    const currentActive = document.getElementsByClassName("btn-active");
+
+    for (const element of currentActive) {
+      element.classList.remove("btn-active");
+    }
+
+    e.target.classList.add("btn-active");
+    if (btnElem) {
+      btnElem.dataset.id = e.target.dataset.id;
+      btnElem.dataset.variationName = e.target.dataset.name;
+    }
+  };
+
+  const sizeButtons = document.getElementsByClassName("sizeButtons");
+
+  for (const element of sizeButtons) {
+    element.addEventListener("click", toggleActiveSize);
+  }
   btnElem?.addEventListener("click", addToCart);
+
+  const qtySelectorDown = document.getElementById("qtySelectorDown");
+  const qtySelectorUp = document.getElementById("qtySelectorUp");
+  const qtySelectorValue = document.getElementById("qtySelectorValue");
+
+  const updateQty = (e: any) => {
+    let val = 1;
+    if (e.target.innerHTML === "-") {
+      val = -1;
+    }
+    if (qtySelectorValue) {
+      let newValue: number = +qtySelectorValue.innerHTML;
+      newValue += val;
+      if (newValue <= 0) {
+        return;
+      }
+
+      const newValStr = `${newValue}`;
+      qtySelectorValue.innerHTML = newValStr;
+      if (btnElem) {
+        btnElem.dataset.quantity = newValStr;
+      }
+    }
+  };
+
+  qtySelectorDown?.addEventListener("click", (e: any) => updateQty(e));
+  qtySelectorUp?.addEventListener("click", (e: any) => updateQty(e));
+
+  const pageLoad = () => {
+    const params = new URLSearchParams(window.location.search);
+    const value = params.get("size");
+
+    const element = document.querySelector(
+      `[data-id="${value}"]`,
+    ) as HTMLElement;
+    element?.click();
+  };
+
+  pageLoad();
 </script>

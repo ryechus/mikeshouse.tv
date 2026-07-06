@@ -30,12 +30,15 @@
     <h1 class="text-xl font-bold">Cart - {$cartQuantity} items</h1>
     {#each $items as item}
       <div class="grid grid-cols-4 items-center py-2 my-4">
-        <a href={`/products/${slugify(item.name)}`}>
+        <a href={`/products/${slugify(item.name)}?size=${item.uid}`}>
           <img class="float-left w-20 mr-5" src={item.thumbnailUrl} alt="" /></a
         >
         <div class="col-span-2">
           <p>{item.name}</p>
-          <p class="text-xs">${item.price}</p>
+          <p class="text-xs">
+            <span class="text-left text-gray-400">{item.variation.name}</span>
+            ${item.price}
+          </p>
         </div>
         <div class="text-right text-xs">
           <div class="flex flex-row justify-end mb-2 items-center">
@@ -68,7 +71,7 @@
       </div>
     </div>
     <div class="py-2">
-      <form action="{backendUrl}/cart/payment-link/{$cartState?.uid}">
+      <form action="{backendUrl}/cart/payment-link/{$cartState2.uid}">
         <button class="btn btn-neutral text-white float-right">Checkout</button>
       </form>
     </div>

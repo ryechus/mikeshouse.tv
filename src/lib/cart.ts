@@ -83,13 +83,16 @@ export const getCurrentCart = async () => {
 export const addToCart = async (e: any): Promise<void> => {
   const body = {
     uid: e.target.dataset.id,
-    quantity: 1,
+    quantity: e.target.dataset.quantity,
     thumbnailUrl: e.target.dataset.thumbnailUrl,
     price: e.target.dataset.price,
     name: e.target.dataset.name,
+    variation: {
+      name: e.target.dataset.variationName,
+    },
   };
 
-  await addToCartV2(body, 1);
+  await addToCartV2(body, e.target.dataset.quantity);
 };
 
 export const addToCartV2 = async (
@@ -104,6 +107,7 @@ export const addToCartV2 = async (
     thumbnailUrl: item.thumbnailUrl,
     price: item.price,
     name: item.name,
+    variation: item.variation,
   };
 
   const req = await fetch(`${backendUrl}/cart/${existingCartUID}/item/add`, {

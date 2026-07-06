@@ -8,6 +8,11 @@ const CartItemSchema = z.object({
   thumbnailUrl: z.string().optional(),
   name: z.string(),
   price: z.number(),
+  variation: z
+    .object({
+      name: z.string().optional(),
+    })
+    .default({}),
 });
 
 export const CartSchema = z.object({
