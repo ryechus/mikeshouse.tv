@@ -31,7 +31,7 @@ const { product } = Astro.props;
 
 <MikesHouseV2 title={slug} description="">
   <div
-    class="font-roboto-flex uppercase font-bold overflow-clip relative leading-5 mt-0 sm:mt-2"
+    class="font-roboto-flex uppercase font-bold relative leading-5 mt-0 sm:mt-2"
   >
     <img class="w-7/8 sm:w-2/3 mx-auto -z-10" src={product.image} />
     <div>
@@ -43,18 +43,16 @@ const { product } = Astro.props;
           !product.available ? (
             <p class="2xl">sold out</p>
           ) : (
-            <p>
-              <button
-                class="btn btn-neutral text-white"
-                data-id={product.id}
-                data-thumbnail-url={product.image}
-                data-price={product.price}
-                data-name={product.name}
-                id={cartBtnId}
-              >
-                add to cart
-              </button>
-            </p>
+            <button
+              class="btn btn-neutral text-white"
+              data-id={product.id}
+              data-thumbnail-url={product.image}
+              data-price={product.price}
+              data-name={product.name}
+              id={cartBtnId}
+            >
+              add to cart
+            </button>
           )
         }
       </div>
