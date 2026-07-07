@@ -46,7 +46,7 @@ jobs:
         uses: withastro/action@v6
         with:
           path: .
-          package-manager: bun@latest
+          package-manager: pnpm@latest
           build-cmd: NODE_ENV=production pnpm run build
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1.7.0
