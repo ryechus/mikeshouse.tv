@@ -29,11 +29,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Git clone the repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.event.inputs.branch }}
       - name: Build site
-        uses: withastro/action@v4
+        uses: withastro/action@v6
         with:
           path: .
           package-manager: bun@latest
@@ -41,7 +41,7 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1.7.0
         with:
-          role-to-assume: arn:aws:iam::188863028714:role/github-actions #change to reflect your IAM role’s ARN
+          role-to-assume: arn:aws:iam::188863028714:role/github-actions
           role-session-name: GitHub_to_AWS_via_FederatedOIDC
           aws-region: ${{ env.AWS_REGION }}
       - name: Sync with S3
