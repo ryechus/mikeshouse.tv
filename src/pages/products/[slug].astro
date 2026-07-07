@@ -44,23 +44,26 @@ const sizeMap: Record<string, string> = {
     <img class="w-7/8 sm:w-2/3 mx-auto -z-10" src={product.image} />
     <div>
       <p>{product.name}</p>
-      <p>${product.price}</p>
+      <p id="productPrice">${product.price}</p>
       <p class="text-xs">{product.description}</p>
 
-      <div class="w-7/8 sm:w-2/3 mx-auto">
-        {
-          product.variations?.map((obj, idx) => (
-            <button
-              data-id={obj.id}
-              data-name={obj.item_variation_data.name}
-              class={`btn btn-neutral btn-outline sizeButtons ${idx === 0 ? "btn-active" : ""}`}
-            >
-              {sizeMap[obj.item_variation_data.name]}
-            </button>
-          ))
-        }
+      <div class="w-[300px] mx-auto my-2">
+        <div class="flex flex-row justify-around">
+          {
+            product.variations?.map((obj, idx) => (
+              <button
+                data-id={obj.id}
+                data-name={obj.item_variation_data.name}
+                data-price={obj.item_variation_data.price_money.amount / 100}
+                class={`btn btn-neutral btn-outline sizeButtons ${idx === 0 ? "btn-active" : ""}`}
+              >
+                {sizeMap[obj.item_variation_data.name]}
+              </button>
+            ))
+          }
+        </div>
       </div>
-      <div class="my-4">
+      <div class="my-2">
         <button id="qtySelectorDown" class="btn btn-square btn-sm">-</button>
         <span id="qtySelectorValue" class="px-4">1</span>
         <button id="qtySelectorUp" class="btn btn-square btn-sm">+</button>
@@ -97,6 +100,7 @@ const sizeMap: Record<string, string> = {
   import { addToCart } from "@lib/cart";
 
   const btnElem = document.getElementById("cartButton");
+  const priceElem = document.getElementById("productPrice");
 
   const toggleActiveSize = (e: any) => {
     const currentActive = document.getElementsByClassName("btn-active");
@@ -109,6 +113,11 @@ const sizeMap: Record<string, string> = {
     if (btnElem) {
       btnElem.dataset.id = e.target.dataset.id;
       btnElem.dataset.variationName = e.target.dataset.name;
+      btnElem.dataset.price = e.target.dataset.price;
+    }
+
+    if (priceElem) {
+      priceElem.innerHTML = `$${e.target.dataset.price}`;
     }
   };
 
