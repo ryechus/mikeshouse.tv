@@ -3,6 +3,14 @@ name: Build and Deploy
 on:
   workflow_dispatch:
     inputs:
+      environment:
+        type: choice
+        description: Environment to deploy to
+        required: true
+        options:
+          - dev
+          - prod
+        default: dev
     branch:
       description: "Select the branch to deploy"
       required: true
@@ -47,7 +55,17 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
       - name: Sync with S3
         run: |
-          aws s3 sync ./dist s3://mikesafterdark.com
+          if [[ "${{ inputs.environment }}" == "prod" ]]; then
+            aws s3 sync ./dist s3://mikesafterdark.com
+          fi
+          if [[ "${{ inputs.environment }}" == "dev" ]]; then
+            aws s3 sync ./dist s3://dev.mikeshouse.tv
+          fi
       - name: Invalidate Cloudfront
         run: |
-          aws cloudfront create-invalidation --distribution-id E1GT09CPFOD0EF --paths "/*"
+          if [[ "${{ inputs.environment }}" == "prod" ]]; then
+            aws cloudfront create-invalidation --distribution-id E1GT09CPFOD0EF --paths "/*"
+          fi
+          if [[ "${{ inputs.environment }}" == "dev" ]]; then
+            aws cloudfront create-invalidation --distribution-id EFXFAA9ITK0HT --paths "/*"
+          fi
