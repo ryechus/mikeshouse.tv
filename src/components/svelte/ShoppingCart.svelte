@@ -1,6 +1,6 @@
 <script lang="ts">
   import ShoppingCartIcon from "@images/icons/shopping_cart.svg";
-  import { cartState2 } from "@lib/cart";
+  import { cartState2, getCartFromRemote } from "@lib/cart";
   import { derived } from "svelte/store";
 
   const cartQuantity = derived(cartState2, ($cartState2) =>
@@ -8,6 +8,11 @@
   );
 
   let { cartIconSize = 35 } = $props();
+
+  window.addEventListener("popstate", async function (event) {
+    console.log("history changed");
+    await getCartFromRemote();
+  });
 </script>
 
 <div id="cartDiv">
