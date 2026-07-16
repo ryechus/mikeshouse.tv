@@ -1,6 +1,8 @@
 ---
 import MikesHouseV2 from "@layouts/MikesHouseV2.astro";
 
+import Product from "@components/svelte/Product.svelte";
+
 import { products } from "@data/products";
 
 export function getStaticPaths() {
@@ -38,11 +40,12 @@ const sizeMap: Record<string, string> = {
 ---
 
 <MikesHouseV2 title={slug} description="">
-  <div
+  <Product product={product} client:only />
+  <!-- <div
     class="font-roboto-flex uppercase font-bold relative leading-5 mt-0 sm:mt-2"
   >
     <div class="text-left px-8 mb-4 visible sm:hidden">
-      <p class="text-sm"><a href="/shop">&larr;Back to shop</a></p>
+      <p class="text-sm"><a href="/shop">&larr;Shop</a></p>
     </div>
     <img class="w-7/8 sm:w-2/3 lg:w-1/2 mx-auto -z-10" src={product.image} />
     <div>
@@ -98,7 +101,7 @@ const sizeMap: Record<string, string> = {
         }
       </div>
     </div>
-  </div>
+  </div> -->
 </MikesHouseV2>
 
 <script>
@@ -128,10 +131,10 @@ const sizeMap: Record<string, string> = {
 
   const sizeButtons = document.getElementsByClassName("sizeButtons");
 
-  for (const element of sizeButtons) {
-    element.addEventListener("click", toggleActiveSize);
-  }
-  btnElem?.addEventListener("click", addToCart);
+  //   for (const element of sizeButtons) {
+  //     element.addEventListener("click", toggleActiveSize);
+  //   }
+  //   btnElem?.addEventListener("click", addToCart);
 
   const qtySelectorDown = document.getElementById("qtySelectorDown");
   const qtySelectorUp = document.getElementById("qtySelectorUp");
@@ -157,8 +160,8 @@ const sizeMap: Record<string, string> = {
     }
   };
 
-  qtySelectorDown?.addEventListener("click", (e: any) => updateQty(e));
-  qtySelectorUp?.addEventListener("click", (e: any) => updateQty(e));
+  //   qtySelectorDown?.addEventListener("click", (e: any) => updateQty(e));
+  //   qtySelectorUp?.addEventListener("click", (e: any) => updateQty(e));
 
   const pageLoad = () => {
     const params = new URLSearchParams(window.location.search);
@@ -170,5 +173,5 @@ const sizeMap: Record<string, string> = {
     element?.click();
   };
 
-  pageLoad();
+  //   pageLoad();
 </script>

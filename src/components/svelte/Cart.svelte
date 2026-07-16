@@ -1,13 +1,9 @@
 <script lang="ts">
   import { backendUrl } from "@config";
-  import { cartState, addToCart, addToCartV2, cartState2 } from "@lib/cart";
+  import { addToCartV2, cartState2, cartQuantity } from "@lib/cart";
   import type { CartItem } from "@lib/types";
   import { slugify } from "@lib/utils";
   import { derived } from "svelte/store";
-
-  const cartQuantity = derived(cartState2, ($cartState2) =>
-    $cartState2.items.reduce((sum, item) => sum + item.quantity, 0),
-  );
 
   const cartTotal = derived(cartState2, ($cartState2) =>
     $cartState2.items.reduce(
@@ -30,7 +26,7 @@
     <h1 class="text-xl font-bold">Cart - {$cartQuantity} items</h1>
     {#each $items as item}
       <div class="grid grid-cols-4 items-center py-2 my-4">
-        <a href={`/products/${slugify(item.name)}?size=${item.uid}`}>
+        <a href={`/products/${slugify(item.name)}`}>
           <img class="float-left w-20 mr-5" src={item.thumbnailUrl} alt="" /></a
         >
         <div class="col-span-2">
@@ -56,6 +52,11 @@
         </div>
       </div>
     {/each}
+    <div class="grid grid-cols-4 items-middle -mt-3 mb-3">
+      <div class="text-right col-span-4 font-bold">
+        <a href="/shop">+ add more items</a>
+      </div>
+    </div>
     <div class="grid grid-cols-4 items-end py-2">
       <div class="text-right"></div>
       <div class="col-span-2 text-right font-bold">

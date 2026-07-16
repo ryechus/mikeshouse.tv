@@ -7,7 +7,7 @@ const CartItemSchema = z.object({
   quantity: z.number(),
   thumbnailUrl: z.string().optional(),
   name: z.string(),
-  price: z.number(),
+  price: z.union([z.string(), z.number()]),
   variation: z
     .object({
       name: z.string().optional(),
@@ -22,3 +22,25 @@ export const CartSchema = z.object({
 
 export type Cart = z.infer<typeof CartSchema>;
 export type CartItem = z.infer<typeof CartItemSchema>;
+
+interface ProductVariation {
+  id: string;
+  item_variation_data: {
+    name: string;
+    price_money: {
+      amount: number;
+    };
+  };
+}
+
+export interface Product {
+  id: string;
+  image: string;
+  name: string;
+  price: string | number;
+  slug: string;
+  description?: string;
+  available?: boolean;
+  purchaseLink?: string;
+  variations: Array<ProductVariation>;
+}

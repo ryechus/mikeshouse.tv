@@ -1,22 +1,6 @@
-import MikesHouseV2 from "../layouts/MikesHouseV2.astro";
-import BlackBarShirt from "@images/product photos/black bar.png";
-import OnlineAftersShirt from "@images/product photos/online afters.png";
-import MorseCodeShirt from "@images/product photos/morse code 1.png";
-import PorscheShirt from "@images/product photos/porsche.png";
 import { apparelCategoryId, backendUrl } from "@config";
 import { slugify } from "@lib/utils";
-
-interface Product {
-  id?: string;
-  image: string;
-  name: string;
-  price: string | number;
-  slug: string;
-  description?: string;
-  available?: boolean;
-  purchaseLink?: string;
-  variations?: Array<object>;
-}
+import { type Product } from "@lib/types";
 
 const getProductsFromAPI = async () => {
   const req = await fetch(
