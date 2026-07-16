@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import MikesHouseV2 from "../layouts/MikesHouseV2.astro";
 
 import { products } from "@data/products";
@@ -21,11 +22,18 @@ import { products } from "@data/products";
             class={!product.available ? "no-underline" : ""}
             href={`/products/${product.slug}`}
           >
-            <img
+            <Image
+              class={`w-full ${!product.available ? "grayscale-100" : ""}`}
+              width={100}
+              height={100}
+              src={product.image}
+              alt=""
+            />
+            {/* <img
               class={`w-full ${!product.available ? "grayscale-100" : ""}`}
               src={product.image}
               alt={product.name}
-            />
+            /> */}
             <div class="font-roboto-flex uppercase font-bold text-md leading-5">
               <p>
                 <span>{product.name}</span>

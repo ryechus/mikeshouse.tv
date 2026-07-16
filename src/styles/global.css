@@ -5,7 +5,7 @@
 }
 
 @theme {
-  --font-roboto-flex: "Roboto Flex Variable", sans-serif;
+  --font-roboto-flex: var(--font-roboto-flex-astro);
 }
 
 html {

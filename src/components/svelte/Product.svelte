@@ -65,6 +65,8 @@
     <p class="text-sm"><a href="/shop">&larr;Shop</a></p>
   </div>
   <img
+    width="400"
+    height="400"
     class="w-7/8 sm:w-2/3 lg:w-1/2 mx-auto -z-10"
     src={product.image}
     alt=""

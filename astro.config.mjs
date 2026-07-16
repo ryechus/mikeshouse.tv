@@ -67,5 +67,10 @@ export default defineConfig({
       name: "Norwester",
       cssVariable: "--font-norwester",
     },
+    {
+      provider: fontProviders.fontsource(),
+      name: "Roboto Flex Variable",
+      cssVariable: "--font-roboto-flex-astro",
+    },
   ],
 });

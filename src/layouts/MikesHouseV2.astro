@@ -1,7 +1,5 @@
 ---
 import "../styles/global.css";
-import "@fontsource/norwester";
-import "@fontsource-variable/roboto-flex/wght.css";
 
 import AppleTouchIcon from "@images/apple-touch-icon.png";
 import FavIcon16x16 from "@images/favicon-16x16.png";
@@ -51,6 +49,7 @@ const fullTitle = title !== "" ? `${siteTitle} - ${title}` : siteTitle;
     <link rel="icon" type="image/png" sizes="16x16" href={FavIcon16x16.src} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <Font cssVariable="--font-norwester" preload />
+    <Font cssVariable="--font-roboto-flex-astro" />
     <title>{fullTitle}</title>
   </head>
   <body>
