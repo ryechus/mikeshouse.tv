@@ -1,4 +1,4 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
 import svelte from "@astrojs/svelte";
@@ -60,19 +60,12 @@ export default defineConfig({
         },
       ],
     }),
-    // mixpanel({
-    //   token: "507de4cce4c41aa7cd5639fe06b1b0cd",
-    //   config: {
-    //     track_pageview: false,
-    //     persistence: "localStorage",
-    //     batch_requests: true,
-    //     debug: process.env.NODE_ENV === "development",
-    //   },
-    //   autoTrack: true,
-    //   autocapture: true, // Enable automatic page view tracking
-    // }),
-    // svelte({
-    //   extensions: [".svelte"],
-    // }),
+  ],
+  fonts: [
+    {
+      provider: fontProviders.fontsource(),
+      name: "Norwester",
+      cssVariable: "--font-norwester",
+    },
   ],
 });

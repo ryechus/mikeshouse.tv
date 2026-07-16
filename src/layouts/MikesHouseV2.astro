@@ -15,6 +15,7 @@ import Socials from "@components/Socials.astro";
 import { Links as navLinks } from "@data/pages";
 import MobileNav from "@components/MobileNav.astro";
 import ShoppingCart from "@components/svelte/ShoppingCart.svelte";
+import { Font } from "astro:assets";
 
 interface Props {
   title: string;
@@ -49,6 +50,7 @@ const fullTitle = title !== "" ? `${siteTitle} - ${title}` : siteTitle;
     <link rel="icon" type="image/png" sizes="32x32" href={FavIcon32x32.src} />
     <link rel="icon" type="image/png" sizes="16x16" href={FavIcon16x16.src} />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <Font cssVariable="--font-norwester" preload />
     <title>{fullTitle}</title>
   </head>
   <body>
