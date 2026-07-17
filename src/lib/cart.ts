@@ -7,8 +7,8 @@ import { atom, map } from "nanostores";
 import { SvelteMap } from "svelte/reactivity";
 import { derived } from "svelte/store";
 
-export const cartState = persistentJSON<Cart>("cart", CartSchema.parse({}));
-export const cartState2 = map<Cart>(CartSchema.parse({}));
+// export const cartState = persistentJSON<Cart>("cart", CartSchema.parse({}));
+export const cartState2 = persistentJSON<Cart>("cart", CartSchema.parse({}));
 
 export const cartUpdated = atom<boolean>(false);
 
@@ -113,8 +113,8 @@ export const addToCartV2 = async (
   cartState2.set(resp);
 };
 
-export const cartQuantity = derived(cartState2, ($cartState2) =>
-  $cartState2.items.reduce((sum, item) => sum + item.quantity, 0),
+export const cartQuantity = derived(cartState2, ($cartState) =>
+  $cartState.items.reduce((sum, item) => sum + item.quantity, 0),
 );
 
 await getCartFromRemote();
