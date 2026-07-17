@@ -53,7 +53,7 @@ const fullTitle = title !== "" ? `${siteTitle} - ${title}` : siteTitle;
   </head>
   <body>
     <div class="@container w-full">
-      <div class="mx-auto flex flex-col h-screen relative">
+      <div class="mx-auto flex flex-col min-h-screen relative pb-15">
         <slot name="before-header" />
         <div
           class="text-center h-21 sm:h-30 mx-auto flex flex-col justify-end shrink-0 z-4"
@@ -91,7 +91,7 @@ const fullTitle = title !== "" ? `${siteTitle} - ${title}` : siteTitle;
         </div>
         {!hideHeader && <MobileNav />}
         <footer
-          class="py-7 px-6 flex flex-col justify-center mx-auto uppercase text-xs text-center mt-auto font-roboto-flex absolute bottom-0 mx-auto w-full left-0"
+          class="px-6 flex flex-col justify-center mx-auto uppercase text-xs text-center mt-auto font-roboto-flex absolute bottom-7 mx-auto w-full left-0"
         >
           <slot name="footer" />
         </footer>
