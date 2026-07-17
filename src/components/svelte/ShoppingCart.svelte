@@ -10,6 +10,8 @@
   );
 
   let { cartIconSize = 35 } = $props();
+
+  await getCartFromRemote();
 </script>
 
 <div id="cartDiv">
