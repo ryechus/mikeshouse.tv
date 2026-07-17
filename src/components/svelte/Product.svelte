@@ -41,7 +41,6 @@
     selectedProduct.price = e.target.dataset.price;
 
     e.target.classList.add("btn-active");
-    console.log(selectedProduct);
   };
 
   const handleAddToCart = async (e: any) => {

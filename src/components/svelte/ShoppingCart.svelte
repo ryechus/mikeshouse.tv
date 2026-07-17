@@ -3,15 +3,29 @@
   import { cartState2, getCartFromRemote } from "@lib/cart";
   import { derived } from "svelte/store";
 
+  import { onMount } from "svelte";
+
   const cartQuantity = derived(cartState2, ($cartState2) =>
     $cartState2.items.reduce((sum, item) => sum + item.quantity, 0),
   );
 
   let { cartIconSize = 35 } = $props();
 
-  window.addEventListener("popstate", async function (event) {
-    console.log("history changed");
-    await getCartFromRemote();
+  console.log("hello, world");
+
+  const handleEvent = (event: any) => {
+    console.log("test");
+    // Check if state exists to ignore initial page load popstate in some browsers
+    if (event.state) {
+      console.log("State changed to:", event.state);
+      // Your logic here
+    }
+  };
+
+  onMount(() => {
+    console.log("on mount");
+    window.addEventListener("popstate", handleEvent);
+    () => window.removeEventListener("popstate", handleEvent);
   });
 </script>
 
