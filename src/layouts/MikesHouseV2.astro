@@ -106,3 +106,9 @@ const fullTitle = title !== "" ? `${siteTitle} - ${title}` : siteTitle;
     margin: 0 5px;
   }
 </style>
+
+<script>
+  document.addEventListener("astro:after-swap", () =>
+    console.log("after swap"),
+  );
+</script>
