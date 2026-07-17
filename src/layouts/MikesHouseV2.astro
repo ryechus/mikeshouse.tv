@@ -8,7 +8,6 @@ import FavIcon32x32 from "@images/favicon-32x32.png";
 import BannerImage from "@images/page_banner.png";
 
 import { siteTitle } from "@config";
-import Socials from "@components/Socials.astro";
 
 import { Links as navLinks } from "@data/pages";
 import MobileNav from "@components/MobileNav.astro";
@@ -94,7 +93,7 @@ const fullTitle = title !== "" ? `${siteTitle} - ${title}` : siteTitle;
         <footer
           class="py-5 pb-15 px-6 flex flex-col justify-center mx-auto uppercase text-xs text-center"
         >
-          <Socials />
+          <slot name="footer" />
         </footer>
       </div>
     </div>
