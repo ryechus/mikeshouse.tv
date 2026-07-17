@@ -87,7 +87,7 @@ const sizeMap: Record<string, string> = {
   </div>
 </div>
 <script>
-  import { addToCart, cartState2 } from "@lib/cart";
+  import { addToCart, cartQty } from "@lib/cart";
   import u from "umbrellajs";
 
   const btnElem = document.getElementById("cartButton");
@@ -117,8 +117,8 @@ const sizeMap: Record<string, string> = {
   u("button#qtySelectorDown").on("click", updateQty);
   u("button#qtySelectorUp").on("click", updateQty);
 
-  cartState2.subscribe((cart) => {
-    if (cart.items) {
+  cartQty.subscribe((num) => {
+    if (num > 0) {
       u("a#checkoutBtn").removeClass("hidden");
     } else {
       u("a#checkoutBtn").addClass("hidden");

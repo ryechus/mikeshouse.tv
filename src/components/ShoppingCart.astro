@@ -19,7 +19,7 @@ const { cartIconSize = 35 } = Astro.props;
 </div>
 
 <script>
-  import { getCartFromRemote, cartState2 } from "@lib/cart";
+  import { getCartFromRemote, cartState2, cartQty } from "@lib/cart";
   import u from "umbrellajs";
   const cartDiv = document.getElementById("cartDiv");
   await getCartFromRemote();
@@ -37,5 +37,7 @@ const { cartIconSize = 35 } = Astro.props;
     } else {
       numItemsElem.empty();
     }
+
+    cartQty.set(numItems);
   });
 </script>

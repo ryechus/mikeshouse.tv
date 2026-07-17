@@ -9,6 +9,7 @@ import { derived } from "svelte/store";
 
 // export const cartState = persistentJSON<Cart>("cart", CartSchema.parse({}));
 export const cartState2 = persistentJSON<Cart>("cart", CartSchema.parse({}));
+export const cartQty = atom<number>(0);
 
 export const cartUpdated = atom<boolean>(false);
 
