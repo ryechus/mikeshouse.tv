@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import MikesHouseV2 from "../layouts/MikesHouseV2.astro";
 
 import { products } from "@data/products";
+import Copyright from "@components/Copyright.astro";
 ---
 
 <MikesHouseV2
@@ -50,4 +51,5 @@ import { products } from "@data/products";
       ))
     }
   </div>
+  <Copyright slot="footer" />
 </MikesHouseV2>

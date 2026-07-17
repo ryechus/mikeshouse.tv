@@ -4,6 +4,7 @@ import MikesHouseV2 from "@layouts/MikesHouseV2.astro";
 import { products } from "@data/products";
 import { Image } from "astro:assets";
 import Product from "@components/Product.astro";
+import Copyright from "@components/Copyright.astro";
 
 export function getStaticPaths() {
   return products.map((data) => {
@@ -41,4 +42,6 @@ const sizeMap: Record<string, string> = {
 
 <MikesHouseV2 title={slug} description="">
   <Product product={product} />
+
+  <Copyright slot="footer" />
 </MikesHouseV2>
