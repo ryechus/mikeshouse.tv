@@ -40,7 +40,10 @@ const sizeMap: Record<string, string> = {
 };
 ---
 
-<MikesHouseV2 title={slug} description="">
+<MikesHouseV2
+  title={`Shop - ${product.name}`}
+  description={product.description || ""}
+>
   <Product product={product} />
 
   <Copyright slot="footer" />

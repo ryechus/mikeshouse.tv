@@ -67,7 +67,12 @@ export const getCurrentCart = async () => {
     const cartUUID: string = crypto.randomUUID();
     existingCartUID = cartUUID;
 
-    document.cookie = `${cartCookieName}=${cartUUID}; path=/`;
+    const date = new Date();
+    const days = 60;
+    // Add 60 days in milliseconds (60 * 24 * 60 * 60 * 1000)
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+
+    document.cookie = `${cartCookieName}=${cartUUID}; expires=${date.toUTCString()}; path=/`;
   }
   return existingCartUID;
 };
