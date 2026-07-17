@@ -73,7 +73,11 @@
     </div>
     <div class="py-2">
       <form action="{backendUrl}/cart/payment-link/{$cartState2.uid}">
-        <button class="btn btn-neutral text-white float-right">Checkout</button>
+        <button
+          disabled={$cartQuantity <= 0}
+          class="btn btn-neutral text-white float-right disabled"
+          >Checkout</button
+        >
       </form>
     </div>
   </div>
