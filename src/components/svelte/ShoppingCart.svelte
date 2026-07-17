@@ -10,23 +10,6 @@
   );
 
   let { cartIconSize = 35 } = $props();
-
-  console.log("hello, world");
-
-  const handleEvent = (event: any) => {
-    console.log("test");
-    // Check if state exists to ignore initial page load popstate in some browsers
-    if (event.state) {
-      console.log("State changed to:", event.state);
-      // Your logic here
-    }
-  };
-
-  onMount(() => {
-    console.log("on mount");
-    window.addEventListener("popstate", handleEvent);
-    () => window.removeEventListener("popstate", handleEvent);
-  });
 </script>
 
 <div id="cartDiv">
