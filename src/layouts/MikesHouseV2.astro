@@ -23,7 +23,7 @@ interface Props {
 const { title = "", description, hideHeader = false } = Astro.props;
 
 const canonicalURL = new URL(Astro.originPathname, Astro.site);
-const fullTitle = title !== "" ? `${siteTitle} - ${title}` : siteTitle;
+const fullTitle = title !== "" ? `${title} - ${siteTitle}` : siteTitle;
 ---
 
 <!doctype html>
