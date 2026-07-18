@@ -15,12 +15,11 @@ const getProductsForUI = async () => {
   await getProductsFromAPI().then((response) => {
     const objects = response["objects"];
     const images = response["related_objects"];
-    let filteredObjects = objects;
-    if (objects.absent_at_location_ids) {
-      filteredObjects = objects.filter(
-        (obj: any) => !obj.absent_at_location_ids.includes(sqaureLocationId),
-      );
-    }
+    const filteredObjects = objects.filter((obj: any) =>
+      obj.absent_at_location_ids
+        ? !obj.absent_at_location_ids.includes(sqaureLocationId)
+        : true,
+    );
     filteredObjects.map((obj: any) => {
       if (obj.type === "ITEM") {
         let imageUrl = "";
