@@ -42,11 +42,13 @@ jobs:
           ref: ${{ github.event.inputs.branch }}
       - name: Build site
         uses: withastro/action@v6
+        env:
+          SQ_LOCATION_ID: ${{ secrets.SQ_LOCATION_ID }}
         with:
           path: .
           node-version: 24
           package-manager: pnpm@latest
-          build-cmd: NODE_ENV=production SQ_LOCATION_ID=${{ secrets.SQ_LOCATION_ID }} pnpm run build
+          build-cmd: NODE_ENV=production SQ_LOCATION_ID=$SQ_LOCATION_ID pnpm run build
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1.7.0
         with:
