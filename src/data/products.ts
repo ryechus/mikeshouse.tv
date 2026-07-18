@@ -1,4 +1,4 @@
-import { apparelCategoryId, backendUrl } from "@config";
+import { apparelCategoryId, backendUrl, sqaureLocationId } from "@config";
 import { slugify } from "@lib/utils";
 import { type Product } from "@lib/types";
 
@@ -15,7 +15,10 @@ const getProductsForUI = async () => {
   await getProductsFromAPI().then((response) => {
     const objects = response["objects"];
     const images = response["related_objects"];
-    objects.map((obj: any) => {
+    const filteredObjects = objects.filter(
+      (obj: any) => !obj.absent_at_location_ids.includes(sqaureLocationId),
+    );
+    filteredObjects.map((obj: any) => {
       if (obj.type === "ITEM") {
         let imageUrl = "";
         const image = images.map((item: any) => {
