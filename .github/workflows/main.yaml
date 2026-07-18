@@ -48,7 +48,7 @@ jobs:
           path: .
           node-version: 24
           package-manager: pnpm@latest
-          build-cmd: NODE_ENV=production SQ_LOCATION_ID=${{ SQ_LOCATION_ID }} pnpm run build
+          build-cmd: NODE_ENV=production SQ_LOCATION_ID=${{ env.SQ_LOCATION_ID }} pnpm run build
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1.7.0
         with:
