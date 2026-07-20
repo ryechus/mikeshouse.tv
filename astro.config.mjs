@@ -1,32 +1,76 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
 import svelte from "@astrojs/svelte";
-import mixpanel from "astrojs-mixpanel";
 import sitemap from "@astrojs/sitemap";
+
+import robots from "astro-robots";
+
+const serverIslandHostname =
+  process.env.SERVER_ISLAND_HOSTNAME !== undefined
+    ? process.env.SERVER_ISLAND_HOSTNAME
+    : "";
+
+let site = "http://localhost:4321";
+if (import.meta.env.MODE === "production") {
+  site = "https://mikeshouse.tv";
+}
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://mikeshouse.tv",
-
+  site: site,
+  //   adapter: node({
+  //     mode: "standalone",
+  //   }),
+  //   server: {
+  //     allowedHosts: true,
+  //   },
+  //   build: {
+  //     apiPrefix: "https://api.mikeshouse.tv",
+  //   },
   vite: {
     plugins: [tailwindcss()],
   },
   integrations: [
     sitemap(),
-    mixpanel({
-      token: "507de4cce4c41aa7cd5639fe06b1b0cd",
-      config: {
-        track_pageview: false,
-        persistence: "localStorage",
-        batch_requests: true,
-        debug: process.env.NODE_ENV === "development",
-      },
-      autoTrack: true,
-      autocapture: true, // Enable automatic page view tracking
+    svelte(),
+    robots({
+      host: "mikeshouse.tv",
+      sitemap: [`${site}/sitemap.xml`],
+      policy: [
+        {
+          userAgent: [
+            "Applebot",
+            "Googlebot",
+            "bingbot",
+            "Yandex",
+            "Yeti",
+            "Baiduspider",
+            "360Spider",
+            "*",
+          ],
+          allow: ["/"],
+          disallow: ["/cart"],
+          crawlDelay: 5,
+          cleanParam: ["sid /", "s /forum/showthread"],
+        },
+        {
+          userAgent: "BLEXBot",
+          disallow: ["/assets", "/uploades/1989-08-21/*jpg$"],
+        },
+      ],
     }),
-    svelte({
-      extensions: [".svelte"],
-    }),
+  ],
+  fonts: [
+    {
+      provider: fontProviders.fontsource(),
+      name: "Norwester",
+      cssVariable: "--font-norwester",
+    },
+    {
+      provider: fontProviders.fontsource(),
+      name: "Roboto Flex Variable",
+      cssVariable: "--font-roboto-flex-astro",
+    },
   ],
 });

@@ -5,11 +5,11 @@
 }
 
 @theme {
-  --font-roboto-flex: "Roboto Flex Variable", sans-serif;
+  --font-roboto-flex: var(--font-roboto-flex-astro);
 }
 
 html {
-  font-family: "norwester";
+  font-family: var(--font-norwester);
 }
 
 @layer base {

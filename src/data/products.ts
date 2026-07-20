@@ -1,48 +1,51 @@
-import MikesHouseV2 from "../layouts/MikesHouseV2.astro";
-import BlackBarShirt from "@images/product photos/black bar.png";
-import OnlineAftersShirt from "@images/product photos/online afters.png";
-import MorseCodeShirt from "@images/product photos/morse code 1.png";
-import PorscheShirt from "@images/product photos/porsche.png";
+import { apparelCategoryId, backendUrl, sqaureLocationId } from "@config";
+import { slugify } from "@lib/utils";
+import { type Product } from "@lib/types";
 
-interface Product {
-  image: string;
-  name: string;
-  price: string;
-  slug: string;
-  description?: string;
-  available?: boolean;
-  purchaseLink?: string;
-}
+const getProductsFromAPI = async () => {
+  const req = await fetch(
+    `${backendUrl}/catalog_by_category/${apparelCategoryId}`,
+  );
 
-export const products: Product[] = [
-  {
-    image: BlackBarShirt.src,
-    name: "OG Black Bar Tee",
-    // description: "100% cotton 7oz unisex t-shirt",
-    price: "28",
-    slug: "black-bar-tee",
-    available: true,
-    purchaseLink: "https://square.link/u/SBtk0Zcy",
-  },
-  {
-    image: OnlineAftersShirt.src,
-    name: "Online Afters Tee",
-    description: "100% cotton 7oz unisex t-shirt",
-    price: "32",
-    slug: "online-afters-tee",
-  },
-  {
-    image: MorseCodeShirt.src,
-    name: "Mike's House Morse Code Tee",
-    description: "100% cotton 7oz unisex t-shirt",
-    price: "32",
-    slug: "morse-code-tee",
-  },
-  {
-    image: PorscheShirt.src,
-    name: "Mike's House Porsche Tee",
-    description: "100% cotton 7oz unisex t-shirt",
-    price: "32",
-    slug: "racing-tee",
-  },
-];
+  return await req.json();
+};
+
+const getProductsForUI = async () => {
+  const productsMap: Product[] = [];
+  await getProductsFromAPI().then((response) => {
+    const objects = response["objects"];
+    const images = response["related_objects"];
+    const filteredObjects = objects.filter((obj: any) =>
+      obj.absent_at_location_ids
+        ? !obj.absent_at_location_ids.includes(sqaureLocationId)
+        : true,
+    );
+    filteredObjects.map((obj: any) => {
+      if (obj.type === "ITEM") {
+        let imageUrl = "";
+        const image = images.map((item: any) => {
+          if (obj.item_data.image_ids.includes(item.id)) {
+            imageUrl = item.image_data.url;
+          }
+        });
+        if (!(obj.id in productsMap)) {
+          productsMap.push({
+            id: obj.item_data.variations[0].id,
+            image: imageUrl,
+            name: obj.item_data.name,
+            slug: slugify(obj.item_data.name),
+            description: obj.item_data.description_html,
+            available: true,
+            price:
+              obj.item_data.variations[0].item_variation_data.price_money
+                .amount / 100,
+            variations: obj.item_data.variations,
+          });
+        }
+      }
+    });
+  });
+  return productsMap;
+};
+
+export const products = await getProductsForUI();

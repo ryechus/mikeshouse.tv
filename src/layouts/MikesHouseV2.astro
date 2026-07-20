@@ -1,7 +1,5 @@
 ---
 import "../styles/global.css";
-import "@fontsource/norwester";
-import "@fontsource-variable/roboto-flex/wght.css";
 
 import AppleTouchIcon from "@images/apple-touch-icon.png";
 import FavIcon16x16 from "@images/favicon-16x16.png";
@@ -10,12 +8,11 @@ import FavIcon32x32 from "@images/favicon-32x32.png";
 import BannerImage from "@images/page_banner.png";
 
 import { siteTitle } from "@config";
-import Socials from "@components/Socials.astro";
 
 import { Links as navLinks } from "@data/pages";
 import MobileNav from "@components/MobileNav.astro";
-
-const cartIconSize = 35;
+import ShoppingCart from "@components/ShoppingCart.astro";
+import { Font } from "astro:assets";
 
 interface Props {
   title: string;
@@ -26,7 +23,7 @@ interface Props {
 const { title = "", description, hideHeader = false } = Astro.props;
 
 const canonicalURL = new URL(Astro.originPathname, Astro.site);
-const fullTitle = title !== "" ? `${siteTitle} - ${title}` : siteTitle;
+const fullTitle = title !== "" ? `${title} - ${siteTitle}` : siteTitle;
 ---
 
 <!doctype html>
@@ -50,11 +47,13 @@ const fullTitle = title !== "" ? `${siteTitle} - ${title}` : siteTitle;
     <link rel="icon" type="image/png" sizes="32x32" href={FavIcon32x32.src} />
     <link rel="icon" type="image/png" sizes="16x16" href={FavIcon16x16.src} />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <Font cssVariable="--font-norwester" preload />
+    <Font cssVariable="--font-roboto-flex-astro" />
     <title>{fullTitle}</title>
   </head>
   <body>
     <div class="@container w-full">
-      <div class="mx-auto flex flex-col h-screen">
+      <div class="mx-auto flex flex-col min-h-screen relative pb-15">
         <slot name="before-header" />
         <div
           class="text-center h-21 sm:h-30 mx-auto flex flex-col justify-end shrink-0 z-4"
@@ -80,6 +79,9 @@ const fullTitle = title !== "" ? `${siteTitle} - ${title}` : siteTitle;
               </nav>
             )
           }
+          <div class="absolute right-10 top-11">
+            {!hideHeader && <ShoppingCart />}
+          </div>
         </div>
 
         <div
@@ -89,9 +91,9 @@ const fullTitle = title !== "" ? `${siteTitle} - ${title}` : siteTitle;
         </div>
         {!hideHeader && <MobileNav />}
         <footer
-          class="py-5 pb-15 px-6 flex flex-col justify-center mx-auto uppercase text-xs text-center"
+          class="px-6 flex flex-col justify-center mx-auto uppercase text-xs text-center mt-auto font-roboto-flex absolute bottom-7 mx-auto w-full left-0"
         >
-          <Socials />
+          <slot name="footer" />
         </footer>
       </div>
     </div>
@@ -103,3 +105,9 @@ const fullTitle = title !== "" ? `${siteTitle} - ${title}` : siteTitle;
     margin: 0 5px;
   }
 </style>
+
+<script>
+  document.addEventListener("astro:after-swap", () =>
+    console.log("after swap"),
+  );
+</script>

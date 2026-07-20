@@ -1,8 +1,10 @@
 ---
+import Copyright from "@components/Copyright.astro";
 import PodcastPlaylist from "@components/PodcastPlaylist.astro";
 import MikesHouseV2 from "@layouts/MikesHouseV2.astro";
 ---
 
 <MikesHouseV2 title="Videos" description="Mike's House VODs">
   <PodcastPlaylist />
+  <Copyright slot="footer" />
 </MikesHouseV2>

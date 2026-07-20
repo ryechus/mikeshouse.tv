@@ -1,0 +1,43 @@
+---
+import ShoppingCartIcon from "@images/icons/shopping_cart.svg";
+
+interface Props {
+  cartIconSize?: number;
+}
+
+const { cartIconSize = 35 } = Astro.props;
+---
+
+<div id="cartDiv">
+  <span
+    id="numCartItems"
+    class="float-left font-roboto-flex font-bold absolute text-xs top-2 -right-3"
+  ></span>
+  <a href="/cart">
+    <ShoppingCartIcon width={cartIconSize} height={cartIconSize} />
+  </a>
+</div>
+
+<script>
+  import { getCartFromRemote, cartState2, cartQty } from "@lib/cart";
+  import u from "umbrellajs";
+  const cartDiv = document.getElementById("cartDiv");
+  await getCartFromRemote();
+
+  cartState2.subscribe((cart) => {
+    let numItems = 0;
+    cart.items.map((item) => {
+      numItems += item.quantity;
+    });
+
+    const numItemsElem = u("#numCartItems");
+    if (numItems) {
+      numItemsElem.html(`${numItems}`);
+      cartDiv?.classList.remove("hidden");
+    } else {
+      numItemsElem.empty();
+    }
+
+    cartQty.set(numItems);
+  });
+</script>

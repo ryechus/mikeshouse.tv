@@ -1,7 +1,9 @@
 ---
+import { Image } from "astro:assets";
 import MikesHouseV2 from "../layouts/MikesHouseV2.astro";
 
 import { products } from "@data/products";
+import Copyright from "@components/Copyright.astro";
 ---
 
 <MikesHouseV2
@@ -16,16 +18,23 @@ import { products } from "@data/products";
         <div class="shrink-0 mb-5 w-full md:basis-1/2 xl:basis-3/8 productCard relative">
           <div
             class={`absolute w-full h-full z-2 flex flex-col justify-end ${!product.available ? "" : "hidden"}`}
-          ></div>
+          />
           <a
             class={!product.available ? "no-underline" : ""}
             href={`/products/${product.slug}`}
           >
-            <img
+            <Image
+              class={`w-7/8 mx-auto ${!product.available ? "grayscale-100" : ""}`}
+              width={100}
+              height={100}
+              src={product.image}
+              alt=""
+            />
+            {/* <img
               class={`w-full ${!product.available ? "grayscale-100" : ""}`}
               src={product.image}
               alt={product.name}
-            />
+            /> */}
             <div class="font-roboto-flex uppercase font-bold text-md leading-5">
               <p>
                 <span>{product.name}</span>
@@ -42,6 +51,5 @@ import { products } from "@data/products";
       ))
     }
   </div>
+  <Copyright slot="footer" />
 </MikesHouseV2>
-
-<script></script>

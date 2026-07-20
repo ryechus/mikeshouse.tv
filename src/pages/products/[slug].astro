@@ -2,6 +2,9 @@
 import MikesHouseV2 from "@layouts/MikesHouseV2.astro";
 
 import { products } from "@data/products";
+import { Image } from "astro:assets";
+import Product from "@components/Product.astro";
+import Copyright from "@components/Copyright.astro";
 
 export function getStaticPaths() {
   return products.map((data) => {
@@ -23,30 +26,25 @@ export function getStaticPaths() {
   });
 }
 
+const cartBtnId = "cartButton";
+
 const { slug } = Astro.params;
 const { product } = Astro.props;
+
+const sizeMap: Record<string, string> = {
+  Small: "S",
+  Medium: "M",
+  Large: "L",
+  "X-Large": "XL",
+  "2X-Large": "2XL",
+};
 ---
 
-<MikesHouseV2 title={slug} description="">
-  <div
-    class="font-roboto-flex uppercase font-bold overflow-clip relative leading-5 mt-0 sm:mt-2"
-  >
-    <img class="w-7/8 sm:w-2/3 mx-auto -z-10" src={product.image} />
-    <div>
-      <p>{product.name}</p>
-      <p>${product.price}</p>
-      <p class="text-xs">{product.description}</p>
-      <div class="mt-2">
-        {
-          !product.available ? (
-            <p class="2xl">sold out</p>
-          ) : (
-            <p>
-              <a href={product.purchaseLink}>buy</a>
-            </p>
-          )
-        }
-      </div>
-    </div>
-  </div>
+<MikesHouseV2
+  title={`${product.name} - Shop`}
+  description={product.description || ""}
+>
+  <Product product={product} />
+
+  <Copyright slot="footer" />
 </MikesHouseV2>
