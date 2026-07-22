@@ -13,8 +13,16 @@ const serverIslandHostname =
     : "";
 
 let site = "http://localhost:4321";
+let server = null;
 if (import.meta.env.MODE === "production") {
   site = "https://mikeshouse.tv";
+} else {
+  server = {
+    https: {
+      key: fs.readFileSync("./localhost.key"),
+      cert: fs.readFileSync("./localhost.crt"),
+    },
+  };
 }
 
 // https://astro.build/config
@@ -31,12 +39,7 @@ export default defineConfig({
   //   },
   vite: {
     plugins: [tailwindcss()],
-    server: {
-      https: {
-        key: fs.readFileSync("./localhost.key"),
-        cert: fs.readFileSync("./localhost.crt"),
-      },
-    },
+    server: server,
   },
   integrations: [
     sitemap(),
