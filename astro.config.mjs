@@ -3,6 +3,7 @@ import { defineConfig, fontProviders } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import svelte from "@astrojs/svelte";
 import sitemap from "@astrojs/sitemap";
+import fs from "node:fs";
 
 import robots from "astro-robots";
 
@@ -30,6 +31,12 @@ export default defineConfig({
   //   },
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      https: {
+        key: fs.readFileSync("./localhost.key"),
+        cert: fs.readFileSync("./localhost.crt"),
+      },
+    },
   },
   integrations: [
     sitemap(),

@@ -21,3 +21,5 @@ pnpm-debug.log*
 .DS_Store
 
 **/private
+localhost.key
+localhost.crt
