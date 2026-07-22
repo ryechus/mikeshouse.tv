@@ -16,7 +16,9 @@ let site = "http://localhost:4321";
 let server = null;
 if (import.meta.env.MODE === "production") {
   site = "https://mikeshouse.tv";
-} else {
+}
+
+if (import.meta.env.NODE_ENV !== "production") {
   server = {
     https: {
       key: fs.readFileSync("./localhost.key"),
