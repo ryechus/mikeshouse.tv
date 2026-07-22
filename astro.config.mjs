@@ -18,7 +18,7 @@ if (import.meta.env.MODE === "production") {
   site = "https://mikeshouse.tv";
 }
 
-if (import.meta.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV !== "production") {
   server = {
     https: {
       key: fs.readFileSync("./localhost.key"),
