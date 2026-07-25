@@ -68,7 +68,7 @@ jobs:
           fi
       - name: Invalidate Cloudfront
         run: |
-          if [[ "${{ inputs.environment }}" == "prod" ]]; then
+          if [[ "${{ inputs.environment }}" == "prod" ]] || [[ "${{ github.event_name }}" == "push"]]; then
             aws cloudfront create-invalidation --distribution-id E1GT09CPFOD0EF --paths "/*"
           fi
           if [[ "${{ inputs.environment }}" == "dev" ]]; then
