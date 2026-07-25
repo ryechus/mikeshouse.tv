@@ -4,6 +4,159 @@
   "items": [
     {
       "kind": "youtube#playlistItem",
+      "etag": "ca0me_th8qxMSJUWZzv2lcz9jIw",
+      "id": "UExmUjNpUzNTenRWa1RIX3NFR0dCT0ZYSzRTWUJKWDZqRC4wMTYxQzVBRDI1NEVDQUZE",
+      "snippet": {
+        "publishedAt": "2026-07-22T19:57:16Z",
+        "channelId": "UCtogQThyg2l30nS_TMUNDpQ",
+        "title": "Not Your Average Tech House EDM Mix | Mike's House S2 EP5",
+        "description": "Streamed on July 18, 2026\n\nFollow on twitch https://twitch.tv/thankyoumikezilla\n\nJoin the discord https://discord.gg/E5GP7Ejqf2\n\nLike, comment, and subscribe!\n\n0:00 - Tech House (Mikezilla)\n40:14 - EDM (S.T.A.N.)\n1:18:06 - Techno (Mikezilla)\n\n#technomusic #techhousemusic  #hardgroovetechno #trancemusic",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/Daewegny4KQ/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/Daewegny4KQ/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/Daewegny4KQ/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/Daewegny4KQ/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/Daewegny4KQ/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Mikezilla",
+        "playlistId": "PLfR3iS3SztVkTH_sEGGBOFXK4SYBJX6jD",
+        "position": 0,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "Daewegny4KQ"
+        },
+        "videoOwnerChannelTitle": "Mikezilla",
+        "videoOwnerChannelId": "UCtogQThyg2l30nS_TMUNDpQ"
+      },
+      "contentDetails": {
+        "videoId": "Daewegny4KQ",
+        "videoPublishedAt": "2026-07-22T21:00:13Z"
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "ca0me_th8qxMSJUWZzv2lcz9jIw",
+      "id": "UExmUjNpUzNTenRWa1RIX3NFR0dCT0ZYSzRTWUJKWDZqRC4wMTYxQzVBRDI1NEVDQUZE",
+      "snippet": {
+        "publishedAt": "2026-07-22T19:57:16Z",
+        "channelId": "UCtogQThyg2l30nS_TMUNDpQ",
+        "title": "Not Your Average Tech House EDM Mix | Mike's House S2 EP5",
+        "description": "Streamed on July 18, 2026\n\nFollow on twitch https://twitch.tv/thankyoumikezilla\n\nJoin the discord https://discord.gg/E5GP7Ejqf2\n\nLike, comment, and subscribe!\n\n0:00 - Tech House (Mikezilla)\n40:14 - EDM (S.T.A.N.)\n1:18:06 - Techno (Mikezilla)\n\n#technomusic #techhousemusic  #hardgroovetechno #trancemusic",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/Daewegny4KQ/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/Daewegny4KQ/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/Daewegny4KQ/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/Daewegny4KQ/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/Daewegny4KQ/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Mikezilla",
+        "playlistId": "PLfR3iS3SztVkTH_sEGGBOFXK4SYBJX6jD",
+        "position": 0,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "Daewegny4KQ"
+        },
+        "videoOwnerChannelTitle": "Mikezilla",
+        "videoOwnerChannelId": "UCtogQThyg2l30nS_TMUNDpQ"
+      },
+      "contentDetails": {
+        "videoId": "Daewegny4KQ",
+        "videoPublishedAt": "2026-07-22T21:00:13Z"
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "B70bk76HbXIGQTCX8yFetdZp5rg",
+      "id": "UExmUjNpUzNTenRWa1RIX3NFR0dCT0ZYSzRTWUJKWDZqRC4wNEU1MTI4NkZEMzVBN0JF",
+      "snippet": {
+        "publishedAt": "2026-07-02T03:39:11Z",
+        "channelId": "UCtogQThyg2l30nS_TMUNDpQ",
+        "title": "Experimental Bounce & House Mix | Mike's House S2 EP4",
+        "description": "Streamed on June 13, 2026\n\nFollow on twitch https://twitch.tv/thankyoumikezilla\n\nJoin the discord https://discord.gg/E5GP7Ejqf2\n\nLike, comment, and subscribe!\n\n0:00 - La Grand\n31:30 - Mikezilla\n42:45 - S.T.A.N.\n1:39:28 - La Grand (Bounce Mix)\n\n#house #experimental #bounce",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/ay5hMK3mK0U/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/ay5hMK3mK0U/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/ay5hMK3mK0U/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/ay5hMK3mK0U/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/ay5hMK3mK0U/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Mikezilla",
+        "playlistId": "PLfR3iS3SztVkTH_sEGGBOFXK4SYBJX6jD",
+        "position": 0,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "ay5hMK3mK0U"
+        },
+        "videoOwnerChannelTitle": "Mikezilla",
+        "videoOwnerChannelId": "UCtogQThyg2l30nS_TMUNDpQ"
+      },
+      "contentDetails": {
+        "videoId": "ay5hMK3mK0U",
+        "videoPublishedAt": "2026-06-19T19:30:25Z"
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
       "etag": "-JmSKrsrJZP6xZ0NITTyXU0Wei8",
       "id": "UExmUjNpUzNTenRWa1RIX3NFR0dCT0ZYSzRTWUJKWDZqRC5CQkEwRDA0MDkwNUM2MDY1",
       "snippet": {
