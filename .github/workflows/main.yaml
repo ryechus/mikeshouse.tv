@@ -60,7 +60,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
       - name: Sync with S3
         run: |
-          if [[ "${{ inputs.environment }}" == "prod" ]]; then
+          if [[ "${{ inputs.environment }}" == "prod" ]] || [[ ("${{ github.event_name }}" == "push" && "${{ github.ref_name }}" == "main") ]]; then
             aws s3 sync ./dist s3://mikesafterdark.com
           fi
           if [[ "${{ inputs.environment }}" == "dev" ]]; then
