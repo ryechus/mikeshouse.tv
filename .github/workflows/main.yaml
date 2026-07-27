@@ -16,6 +16,8 @@ on:
       required: true
       default: "main"
       type: string
+  repository_dispatch:
+    types: [square_catalog_update]
   push:
     branches: [main]
     paths:
@@ -27,7 +29,7 @@ on:
 env:
   AWS_REGION: "us-east-1" #Change to reflect your Region
 
-run-name: "${{ github.head_ref || github.ref_name }} - ${{ github.event.head_commit.message }} - [${{ inputs.environment }}]"
+run-name: "${{ github.head_ref || github.ref_name }} - ${{ github.event.head_commit.message }} - [${{ inputs.environment || github.event_name }}]"
 
 # Permission can be added at job level or workflow level
 permissions:
