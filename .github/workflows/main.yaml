@@ -62,7 +62,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
       - name: Sync with S3
         run: |
-          if [[ "${{ inputs.environment }}" == "prod" ]] || [[ ("${{ github.event_name }}" == "push" && "${{ github.ref_name }}" == "main") ]]; then
+          if [[ "${{ inputs.environment }}" == "prod" ]] || [[ ("${{ github.event_name }}" == "push" && "${{ github.ref_name }}" == "main") ]] || [[ "${{ github.event_name }}" == "repository_dispatch" ]]; then
             aws s3 sync ./dist s3://mikesafterdark.com
           fi
           if [[ "${{ inputs.environment }}" == "dev" ]]; then
@@ -70,7 +70,7 @@ jobs:
           fi
       - name: Invalidate Cloudfront
         run: |
-          if [[ "${{ inputs.environment }}" == "prod" ]] || [[ ("${{ github.event_name }}" == "push" && "${{ github.ref_name }}" == "main") ]]; then
+          if [[ "${{ inputs.environment }}" == "prod" ]] || [[ ("${{ github.event_name }}" == "push" && "${{ github.ref_name }}" == "main") ]] || [[ "${{ github.event_name }}" == "repository_dispatch" ]]; then
             aws cloudfront create-invalidation --distribution-id E1GT09CPFOD0EF --paths "/*"
           fi
           if [[ "${{ inputs.environment }}" == "dev" ]]; then
