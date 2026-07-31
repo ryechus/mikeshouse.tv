@@ -1,0 +1,17 @@
+---
+import Socials from "@components/Socials.astro";
+import MikesHouseV2 from "@layouts/MikesHouseV2.astro";
+
+const aboutText = `Authenticity over everything.`;
+---
+
+<MikesHouseV2 title="about" description="">
+  <div class="w-full sm:w-full mx-auto">
+    <div class="font-roboto-flex w-full text-3xl font-bold my-5 mb-8 lowercase">
+      <h1>Authenticity</h1>
+      <hr class="my-3 h-[4px] bg-black border-none" />
+      <h1>Everything</h1>
+    </div>
+    <Socials iconWidth={30} />
+  </div>
+</MikesHouseV2>
