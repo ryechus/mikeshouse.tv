@@ -4,6 +4,57 @@
   "items": [
     {
       "kind": "youtube#playlistItem",
+      "etag": "a80JQv_b68rX5Cd8vaSM9e8fWO8",
+      "id": "UExmUjNpUzNTenRWa1RIX3NFR0dCT0ZYSzRTWUJKWDZqRC4zMUEyMkQwOTk0NTg4MDgw",
+      "snippet": {
+        "publishedAt": "2026-07-31T20:42:14Z",
+        "channelId": "UCtogQThyg2l30nS_TMUNDpQ",
+        "title": "After Hours House Mix | Mike's House S2 EP6",
+        "description": "Streamed on July 25, 2026\n\n0:00 - Mikezilla\n22:55 - SMLS\n1:38:46 - Mikezilla\n\nSMLS - https://instagram.com/smileb4cody\n\nFollow on twitch https://twitch.tv/thankyoumikezilla\n\nJoin the discord https://discord.gg/E5GP7Ejqf2\n\nLike, comment, and subscribe!",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/hdoDcQvn1Rc/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/hdoDcQvn1Rc/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/hdoDcQvn1Rc/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/hdoDcQvn1Rc/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/hdoDcQvn1Rc/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Mikezilla",
+        "playlistId": "PLfR3iS3SztVkTH_sEGGBOFXK4SYBJX6jD",
+        "position": 0,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "hdoDcQvn1Rc"
+        },
+        "videoOwnerChannelTitle": "Mikezilla",
+        "videoOwnerChannelId": "UCtogQThyg2l30nS_TMUNDpQ"
+      },
+      "contentDetails": {
+        "videoId": "hdoDcQvn1Rc",
+        "videoPublishedAt": "2026-07-28T21:36:36Z"
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
       "etag": "ca0me_th8qxMSJUWZzv2lcz9jIw",
       "id": "UExmUjNpUzNTenRWa1RIX3NFR0dCT0ZYSzRTWUJKWDZqRC4wMTYxQzVBRDI1NEVDQUZE",
       "snippet": {
