@@ -5,11 +5,13 @@
   import { slugify } from "@lib/utils";
   import { derived } from "svelte/store";
 
-  const cartTotal = derived(cartState2, ($cartState2) =>
-    $cartState2.items.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0,
-    ),
+  const cartTotal = derived(
+    cartState2,
+    ($cartState2) =>
+      $cartState2.items.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0,
+      ) + 5.99,
   );
 
   async function updateQuantity(item: CartItem, val: number): Promise<void> {
@@ -59,16 +61,18 @@
     </div>
     <div class="grid grid-cols-4 items-end py-2">
       <div class="text-right"></div>
+      <div class="col-span-2 text-right">
+        <p>Shipping</p>
+      </div>
+      <div class="text-right">
+        <p>$5.99</p>
+      </div>
+      <div class="text-right"></div>
       <div class="col-span-2 text-right font-bold">
-        <p>Estimated Total</p>
+        <p>Total</p>
       </div>
       <div class="text-right font-bold">
         <p>${$cartTotal}</p>
-      </div>
-      <div class="col-span-4">
-        <p class="text-gray-400 italic text-right text-xs">
-          tax and shipping calculated at checkout
-        </p>
       </div>
     </div>
     <div class="py-2">
