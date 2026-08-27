@@ -1,8 +1,14 @@
 <script lang="ts">
   import { backendUrl } from "@config";
-  import { addToCartV2, cartState2, cartQuantity } from "@lib/cart";
+  import {
+    addToCartV2,
+    cartState2,
+    cartQuantity,
+    lookupAddress,
+  } from "@lib/cart";
   import type { CartItem } from "@lib/types";
   import { slugify } from "@lib/utils";
+  import type { KeyboardEventHandler } from "svelte/elements";
   import { derived } from "svelte/store";
 
   const shippingTotal = 5.99;
@@ -26,6 +32,21 @@
   const items = derived(cartState2, ($cartState2) =>
     $cartState2.items.filter((i) => i.quantity > 0),
   );
+
+  let userSubmittedAddress = $state("");
+
+  $effect(() => {
+    if (!userSubmittedAddress) {
+      return;
+    }
+
+    const handler = setTimeout(() => {
+      console.log(userSubmittedAddress);
+      lookupAddress(userSubmittedAddress);
+    }, 500);
+
+    return () => clearTimeout(handler);
+  });
 </script>
 
 <div id="flex flex-col">
@@ -65,6 +86,26 @@
       </div>
     </div>
     {#if $cartSubtotal > 0}
+      <div class="grid grid-cols-4 items-end py-2">
+        <div class="col-span-4">Shipping</div>
+        <div class="col-span-2">
+          <input placeholder="First Name" />
+        </div>
+        <div class="col-span-2">
+          <input placeholder="Last Name" />
+        </div>
+        <div class="col-span-4">
+          <input
+            type="text"
+            bind:value={userSubmittedAddress}
+            class="w-full"
+            placeholder="Enter your address here."
+          />
+        </div>
+        <!-- <div class="col-span-4">
+          <input class="w-full" placeholder="Apt, Suite, Floor, etc." />
+        </div> -->
+      </div>
       <div class="grid grid-cols-4 items-end py-2">
         <div class="text-right"></div>
         <div class="col-span-2 text-right">

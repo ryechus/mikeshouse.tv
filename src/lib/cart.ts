@@ -123,4 +123,12 @@ export const cartQuantity = derived(cartState2, ($cartState) =>
   $cartState.items.reduce((sum, item) => sum + item.quantity, 0),
 );
 
+export const lookupAddress = async (input: string) => {
+  const encodedInput: string = encodeURIComponent(input);
+  const req = await fetch(`${backendUrl}/address/lookup/${encodedInput}`);
+  const resp = await req.json();
+
+  console.log(resp);
+};
+
 await getCartFromRemote();
