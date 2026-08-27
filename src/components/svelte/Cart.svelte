@@ -5,11 +5,18 @@
   import { slugify } from "@lib/utils";
   import { derived } from "svelte/store";
 
-  const cartTotal = derived(cartState2, ($cartState2) =>
+  const shippingTotal = 5.99;
+
+  const cartSubtotal = derived(cartState2, ($cartState2) =>
     $cartState2.items.reduce(
-      (sum, item) => sum + item.price * item.quantity,
+      (sum, item) => sum + (item.price as number) * item.quantity,
       0,
     ),
+  );
+
+  const cartTotal = derived(
+    cartSubtotal,
+    ($cartSubtotal) => $cartSubtotal + shippingTotal,
   );
 
   async function updateQuantity(item: CartItem, val: number): Promise<void> {
@@ -48,7 +55,7 @@
               on:click={async () => updateQuantity(item, 1)}>+</button
             >
           </div>
-          <p class="text-sm">${item.price * item.quantity}</p>
+          <p class="text-sm">${(item.price as number) * item.quantity}</p>
         </div>
       </div>
     {/each}
@@ -57,20 +64,35 @@
         <a href="/shop">+ add more items</a>
       </div>
     </div>
-    <div class="grid grid-cols-4 items-end py-2">
-      <div class="text-right"></div>
-      <div class="col-span-2 text-right font-bold">
-        <p>Estimated Total</p>
+    {#if $cartSubtotal > 0}
+      <div class="grid grid-cols-4 items-end py-2">
+        <div class="text-right"></div>
+        <div class="col-span-2 text-right">
+          <p>Subtotal</p>
+        </div>
+        <div class="text-right">
+          <p>${$cartSubtotal.toFixed(2)}</p>
+        </div>
       </div>
-      <div class="text-right font-bold">
-        <p>${$cartTotal}</p>
+      <div class="grid grid-cols-4 items-end py-2">
+        <div class="text-right"></div>
+        <div class="col-span-2 text-right">
+          <p>Shipping</p>
+        </div>
+        <div class="text-right">
+          <p>${shippingTotal}</p>
+        </div>
       </div>
-      <div class="col-span-4">
-        <p class="text-gray-400 italic text-right text-xs">
-          tax and shipping calculated at checkout
-        </p>
+      <div class="grid grid-cols-4 items-end py-2">
+        <div class="text-right"></div>
+        <div class="col-span-2 text-right font-bold">
+          <p>Total</p>
+        </div>
+        <div class="text-right font-bold">
+          <p>${$cartTotal.toFixed(2)}</p>
+        </div>
       </div>
-    </div>
+    {/if}
     <div class="py-2">
       <form action="{backendUrl}/cart/payment-link/{$cartState2.uid}">
         <button
