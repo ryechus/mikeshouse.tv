@@ -18,6 +18,8 @@ const CartItemSchema = z.object({
 export const CartSchema = z.object({
   uid: z.string().default(""),
   items: z.array(CartItemSchema).default([]),
+  shippingFee: z.float32().default(10.0),
+  shippingEstimatedDate: z.string().default(""),
 });
 
 export type Cart = z.infer<typeof CartSchema>;
