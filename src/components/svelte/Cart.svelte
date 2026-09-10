@@ -68,7 +68,7 @@
       </div>
     </div>
     {#if $cartSubtotal > 0}
-      <div class="grid grid-cols-4 items-end py-2">
+      <div class="grid grid-cols-4 items-end mt-2">
         <div class="text-right"></div>
         <div class="col-span-2 text-right">
           <p>Subtotal</p>
@@ -77,7 +77,7 @@
           <p>${$cartSubtotal.toFixed(2)}</p>
         </div>
       </div>
-      <div class="grid grid-cols-4 items-end py-2">
+      <div class="grid grid-cols-4 items-end">
         <div class="text-right"></div>
         <div class="col-span-2 text-right">
           <p>
@@ -88,7 +88,7 @@
           <p>${$shippingTotal.toFixed(2)}</p>
         </div>
       </div>
-      <div class="grid grid-cols-4 items-end py-2">
+      <div class="grid grid-cols-4 items-end">
         <div class="text-right"></div>
         <div class="col-span-2 text-right font-bold">
           <p>Total</p>
