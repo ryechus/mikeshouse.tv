@@ -80,7 +80,9 @@
       <div class="grid grid-cols-4 items-end py-2">
         <div class="text-right"></div>
         <div class="col-span-2 text-right">
-          <p>Shipping</p>
+          <p>
+            Standard Shipping<br />
+          </p>
         </div>
         <div class="text-right">
           <p>${$shippingTotal.toFixed(2)}</p>
@@ -94,6 +96,11 @@
         <div class="text-right font-bold">
           <p>${$cartTotal.toFixed(2)}</p>
         </div>
+      </div>
+      <div class="text-right text-xs">
+        Estimated shipping 5 - 8 business days<br /><span class="italic"
+          >{$cartState2.shippingEstimatedDate}</span
+        >
       </div>
     {/if}
     <div class="py-2">
