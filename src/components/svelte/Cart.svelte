@@ -108,7 +108,7 @@
         <button
           disabled={$cartQuantity <= 0}
           class="btn btn-neutral text-white float-right disabled"
-          >Checkout</button
+          >Complete Checkout</button
         >
       </form>
     </div>
