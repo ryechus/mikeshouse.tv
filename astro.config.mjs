@@ -28,11 +28,11 @@ export default defineConfig({
   //   build: {
   //     apiPrefix: "https://api.mikeshouse.tv",
   //   },
-  security: {
-    csp: {
-      algorithm: "SHA-512",
-    },
-  },
+//   security: {
+//     csp: {
+//       algorithm: "SHA-512",
+//     },
+//   },
   vite: {
     plugins: [tailwindcss()],
   },
