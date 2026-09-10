@@ -5,8 +5,6 @@
   import { slugify } from "@lib/utils";
   import { derived } from "svelte/store";
 
-  const shippingTotal = 5.99;
-
   const cartSubtotal = derived(cartState2, ($cartState2) =>
     $cartState2.items.reduce(
       (sum, item) => sum + (item.price as number) * item.quantity,
@@ -14,9 +12,14 @@
     ),
   );
 
+  const shippingTotal = derived(
+    cartState2,
+    ($cartState2) => $cartState2.shippingFee,
+  );
+
   const cartTotal = derived(
     cartSubtotal,
-    ($cartSubtotal) => $cartSubtotal + shippingTotal,
+    ($cartSubtotal) => $cartSubtotal + $shippingTotal,
   );
 
   async function updateQuantity(item: CartItem, val: number): Promise<void> {
@@ -47,12 +50,12 @@
           <div class="flex flex-row justify-end mb-2 items-center">
             <button
               class="btn btn-xs btn-neutral btn-soft"
-              on:click={async () => updateQuantity(item, -1)}>-</button
+              onclick={async () => updateQuantity(item, -1)}>-</button
             >
             <p class="mx-2">{item.quantity}</p>
             <button
               class="btn btn-xs btn-neutral btn-soft"
-              on:click={async () => updateQuantity(item, 1)}>+</button
+              onclick={async () => updateQuantity(item, 1)}>+</button
             >
           </div>
           <p class="text-sm">${(item.price as number) * item.quantity}</p>
@@ -80,7 +83,7 @@
           <p>Shipping</p>
         </div>
         <div class="text-right">
-          <p>${shippingTotal}</p>
+          <p>${$shippingTotal.toFixed(2)}</p>
         </div>
       </div>
       <div class="grid grid-cols-4 items-end py-2">

@@ -11,7 +11,7 @@ if (import.meta.env.MODE === "production") {
   tempCategoryId = "STLTFX7BSIUQJOFYXEDHW5MA";
 }
 
-export const backendUrl = tempBackendUrl;
+export const backendUrl = `${tempBackendUrl}`;
 export const siteUrl = tempSiteUrl;
 export const apparelCategoryId = tempCategoryId;
 export const sqaureLocationId =
