@@ -15,4 +15,8 @@ export const Links = [
     href: "/about",
     text: "about",
   },
+  {
+    href: "/support",
+    text: "support",
+  },
 ];
