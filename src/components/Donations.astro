@@ -81,7 +81,7 @@ const implicitGrant = `https://id.twitch.tv/oauth2/authorize?client_id=${twitchC
           id="userName"
           type="text"
           name="userName"
-          placeholder="enter name"
+          placeholder="enter name (leave blank for anonymous)"
           class="w-full p-4 py-3 pl-1 placeholder:text-gray-400 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none text-left"
         />
       </div>
@@ -91,7 +91,7 @@ const implicitGrant = `https://id.twitch.tv/oauth2/authorize?client_id=${twitchC
         <textarea
           id="tipMessage"
           name="tipMessage"
-          placeholder="enter a message"
+          placeholder="enter a tts message ($2 min)"
           maxlength="255"
           class="w-full p-4 py-3 pl-1 placeholder:text-gray-400 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none text-left resize-none"
         ></textarea>
